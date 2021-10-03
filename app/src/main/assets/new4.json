@@ -1,0 +1,977 @@
+{
+   "html_attributions" : [],
+   "next_page_token" : "Aap_uEAL49JMqFZba9FbsJOKRZXpRz00QFwxJPD-z6O7OLBIJi28VfzmeWa1z69fvAYWAhNZdMF-5rLwMKZ4HLrtdNweMbLIuw9sHwgfEprF7h4OOnF6yPLnXqDcw5qRWnhiwBEg_SIE_A4t0HwT-2498lSXU7Ti63t3kfSPH4YtsMWdV--DEsZPa3o5vUgB5VfK2csHQl5I7qfV9EMmC4JI7XA7m3NREAIapyrSmbcwb-H-ZxQ02T8LlypE-EjLPTYNOXOhUpzSVUMpxxfPm-qy1psYDGNinyKYSlzIesHqs1nPl0cYe9s-8OkaVqGrSsG_z2Sjt48MSq6yN57lUEkDuErlCpPg9acaCLJK23C5V_kftiGOGvPhKRHN3oqqG9vH_Cwjh_-ahFOR1ioFJnIpsSMDOa3VpTGgkAxZUKpyhX7JucY6TWJqBS04hem-",
+   "results" : [
+      {
+         "business_status" : "OPERATIONAL",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.9935722,
+               "lng" : 121.4676514
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 24.9949520302915,
+                  "lng" : 121.4689729302915
+               },
+               "southwest" : {
+                  "lat" : 24.99225406970849,
+                  "lng" : 121.4662749697085
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+         "icon_background_color" : "#FF9E67",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+         "name" : "臨洋港生猛活海鮮(中和店)",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "photos" : [
+            {
+               "height" : 2988,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/116462144986195679824\"\u003ejing-syuan cyue\u003c/a\u003e"
+               ],
+               "photo_reference" : "Aap_uEC5rtd8htlz5n7t0fBdg679vGdLtAdZEklLRc2vXMnk-aJkJ_E150TYaTf9EXE2PtAFkwez2AFLcYNwj7qIR6EZoQG7m_yCQzUv9Rw_Ftmoyta9tWXMvWy16xYFQOOPZiYYVz6Ys6_o9LCS0nxQJdirEoCBP0MZ6hH5G3W6TjJ8e7cZ",
+               "width" : 5312
+            }
+         ],
+         "place_id" : "ChIJk9t_nr0CaDQRtgYSt5--Nlo",
+         "plus_code" : {
+            "compound_code" : "XFV9+C3 Zhonghe District, New Taipei City, Taiwan",
+            "global_code" : "7QP3XFV9+C3"
+         },
+         "price_level" : 2,
+         "rating" : 4,
+         "reference" : "ChIJk9t_nr0CaDQRtgYSt5--Nlo",
+         "scope" : "GOOGLE",
+         "types" : [ "restaurant", "food", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 1617,
+         "vicinity" : "No. 217-3, Juguang Road, Zhonghe District"
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.0004507,
+               "lng" : 121.4636022
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.0017498802915,
+                  "lng" : 121.4647530302915
+               },
+               "southwest" : {
+                  "lat" : 24.9990519197085,
+                  "lng" : 121.4620550697085
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+         "icon_background_color" : "#FF9E67",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+         "name" : "Guang Hong Longhua House Restaurant",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "photos" : [
+            {
+               "height" : 1960,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/109121417232335544049\"\u003eTerry Tsai\u003c/a\u003e"
+               ],
+               "photo_reference" : "Aap_uEBZmU7K7CftE2Y2tifJlkT0C9o6BchSXYcD-_07eFPsVTQaZpSI_1l8_xOX7II1Yf_ChTI_L4tOAe9qbvV_zB-A9pth8zd_k-zTnN88pqPgv2LJeFRkcUAUuKzcQkLheLsiFi-X2UhsFd2Nb2j5Hcr-BOr_lNvok8lcTco-xsH_-dMn",
+               "width" : 4032
+            }
+         ],
+         "place_id" : "ChIJX5Rej6MCaDQRGNSsO5zCaOY",
+         "plus_code" : {
+           "compound_code" : "2F27+5C Banqiao District, New Taipei City, Taiwan",
+            "global_code" : "7QQ32F27+5C"
+         },
+         "price_level" : 2,
+         "rating" : 3,
+         "reference" : "ChIJX5Rej6MCaDQRGNSsO5zCaOY",
+         "scope" : "GOOGLE",
+         "types" : [ "restaurant", "food", "point_of_interest", "store", "establishment" ],
+         "user_ratings_total" : 746,
+         "vicinity" : "2樓, No. 247號, Chongqing Road, Banqiao District"
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.9988889,
+               "lng" : 121.4636111
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.0002510802915,
+                  "lng" : 121.4650004302915
+               },
+               "southwest" : {
+                  "lat" : 24.9975531197085,
+                  "lng" : 121.4623024697085
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+         "icon_background_color" : "#FF9E67",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+         "name" : "飯匠創意米食料理工坊",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "photos" : [
+            {
+               "height" : 1800,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/116407754735211948934\"\u003eMiho Liu\u003c/a\u003e"
+               ],
+               "photo_reference" : "Aap_uECKY_yipqd3ngoLCUFM37vd4Oz6TlGuvfmDypUwttVtX67hF9bUDH5Ujc3XGLcPkQ3twZHbne3B784Hfv9Bvrzr-DYtvJF29fnRSZOGKIFI-sGCkKj2qrR-gdDUd8bcxXkPyDSJs9aa2RmK_sY_mhI94QXLAHsK3NBDzRVVkpLPxHoB",
+               "width" : 1200
+            }
+         ],
+         "place_id" : "ChIJb6zab6MCaDQRrHv5Vmcy2s0",
+         "plus_code" : {
+            "compound_code" : "XFX7+HC Banqiao District, New Taipei City, Taiwan",
+            "global_code" : "7QP3XFX7+HC"
+         },
+         "price_level" : 2,
+         "rating" : 4.1,
+         "reference" : "ChIJb6zab6MCaDQRrHv5Vmcy2s0",
+         "scope" : "GOOGLE",
+         "types" : [ "restaurant", "food", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 124,
+         "vicinity" : "No. 290之4號, Chongqing Road, Banqiao District"
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.994836,
+               "lng" : 121.4690686
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 24.9961850302915,
+                  "lng" : 121.4704175302915
+               },
+               "southwest" : {
+                  "lat" : 24.99348706970849,
+                  "lng" : 121.4677195697085
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+         "icon_background_color" : "#FF9E67",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+         "name" : "雲林薑母鴨",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "photos" : [
+            {
+               "height" : 3000,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/101177974426706741653\"\u003e水餃\u003c/a\u003e"
+               ],
+               "photo_reference" : "Aap_uEBa0gLJpidQ-R1Z4mPsu8ICQOCDSYKwsr2hJPCZrB7JZE3LWilY5aRe7hb8Q4ir_B3HJONteoEpafJ3x130X5ci5jYe9D6Qq7Rcnv4r6pr-AOYssvYAZ0WptTKgRv8N_4iLa_aSBPmSqxBx_pVipHjSJr4gSHpUZ4hdVV6tnnddpdnH",
+               "width" : 4000
+            }
+         ],
+         "place_id" : "ChIJbQjd5JcCaDQRlRa-ZmZ5sOc",
+         "plus_code" : {
+            "compound_code" : "XFV9+WJ Zhonghe District, New Taipei City, Taiwan",
+          "global_code" : "7QP3XFV9+WJ"
+         },
+         "price_level" : 2,
+         "rating" : 4,
+         "reference" : "ChIJbQjd5JcCaDQRlRa-ZmZ5sOc",
+         "scope" : "GOOGLE",
+         "types" : [ "restaurant", "food", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 404,
+         "vicinity" : "No. 222-5號, Juguang Road, Zhonghe District"
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.9971355,
+               "lng" : 121.464184
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 24.9984824302915,
+                  "lng" : 121.4655324802915
+               },
+               "southwest" : {
+                  "lat" : 24.99578446970849,
+                  "lng" : 121.4628345197085
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+         "icon_background_color" : "#FF9E67",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+         "name" : "迎新日式涮涮鍋",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "photos" : [
+            {
+               "height" : 3096,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/115482241376663142759\"\u003e徐菘菘\u003c/a\u003e"
+               ],
+               "photo_reference" : "Aap_uEB7bRE9Q1CG5QqRw_e6PZTPEtfTyiuDOd8AAFvDkFIedxyMamgfKrykLckqTY1etvgaSt5wTejhmfbq2w0zXLKV4vWxoF4hX24O4XBTNbZW26gKc3y5oCJqwPD0tOLG8AtiyrR7MIyF1IwoFktriRSp92V_VTqsQciKZT8pfRcTmndM",
+               "width" : 5504
+            }
+         ],
+         "place_id" : "ChIJwfMHSqMCaDQRDoqjYuP6W8Q",
+         "plus_code" : {
+            "compound_code" : "XFW7+VM Banqiao District, New Taipei City, Taiwan",
+            "global_code" : "7QP3XFW7+VM"
+         },
+         "price_level" : 2,
+         "rating" : 4.1,
+         "reference" : "ChIJwfMHSqMCaDQRDoqjYuP6W8Q",
+         "scope" : "GOOGLE",
+         "types" : [ "restaurant", "food", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 97,
+         "vicinity" : "No. 5-1, Lane 346, Chongqing Road, Banqiao District"
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.9959653,
+               "lng" : 121.4637162
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 24.9973078802915,
+                  "lng" : 121.4650729802915
+               },
+               "southwest" : {
+                  "lat" : 24.99460991970849,
+                  "lng" : 121.4623750197085
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+         "icon_background_color" : "#FF9E67",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+         "name" : "樂樂早午餐",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "photos" : [
+            {
+               "height" : 2592,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/103796145541169206862\"\u003e廖清吉\u003c/a\u003e"
+               ],
+               "photo_reference" : "Aap_uEDIhtOU_vZVAM4U4rYIqf67zCMTb4IIMdNc4e6uw6aFYbLYUx4FGEKvJq8JulgYRVjcYpeYMnssD5wJnVBEo3PsPWnugSONx9CNEwXaVLnZwplwxG0RFAr0wSEbSCQx43Ugbfw60KVRwvG_QabK1nh80KbUDvY-v3y2-PCHc9USpi-w",
+               "width" : 4608
+            }
+         ],
+         "place_id" : "ChIJL1d8u7wCaDQRcyu0uh3kTtM",
+         "plus_code" : {
+            "compound_code" : "XFW7+9F Banqiao District, New Taipei City, Taiwan",
+            "global_code" : "7QP3XFW7+9F"
+         },
+         "price_level" : 1,
+         "rating" : 4.4,
+         "reference" : "ChIJL1d8u7wCaDQRcyu0uh3kTtM",
+         "scope" : "GOOGLE",
+         "types" : [ "restaurant", "food", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 282,
+         "vicinity" : "No. 163號, Heping Road, Banqiao District"
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.99655419999999,
+               "lng" : 121.4634514
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 24.9978595802915,
+                  "lng" : 121.4647853802915
+               },
+               "southwest" : {
+                  "lat" : 24.9951616197085,
+                  "lng" : 121.4620874197085
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+         "icon_background_color" : "#FF9E67",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+         "name" : "轉角鐵板燒小館",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "photos" : [
+            {
+               "height" : 1520,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/106505349333987723338\"\u003e黃敬傑\u003c/a\u003e"
+               ],
+               "photo_reference" : "Aap_uEAyFio9C3t6knk1XS7LKZAmCOXjGNKzJt07Ud2ufb77ifUUHjIMCTOsur7DbCA1AEeeOIDqIDrt262-9q-Nh1wueqUTdLff1RLX5mjehO2blPyMgYrRjfHGp7XOjNUy0Fn1N4VhJbWDTgW9t_i6fApaeU_Vc8fAooLN8SAe7ALbyUG5",
+               "width" : 2688
+            }
+         ],
+         "place_id" : "ChIJYTHVr7wCaDQRv-hp4slQAR8",
+         "plus_code" : {
+            "compound_code" : "XFW7+J9 Banqiao District, New Taipei City, Taiwan",
+            "global_code" : "7QP3XFW7+J9"
+         },
+         "rating" : 3.9,
+         "reference" : "ChIJYTHVr7wCaDQRv-hp4slQAR8",
+         "scope" : "GOOGLE",
+         "types" : [ "restaurant", "food", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 140,
+         "vicinity" : "No. 20, Lane 161, Heping Road, Banqiao District"
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.9974519,
+               "lng" : 121.4636378
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 24.9987947802915,
+                  "lng" : 121.4649452802915
+               },
+               "southwest" : {
+                  "lat" : 24.9960968197085,
+                  "lng" : 121.4622473197085
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+         "icon_background_color" : "#FF9E67",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+         "name" : "Ba Fang Yun Ji Dumpling",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "photos" : [
+            {
+               "height" : 1949,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/110289446189810170722\"\u003e龐柔舖\u003c/a\u003e"
+               ],
+               "photo_reference" : "Aap_uEB3RvEIToP5i922lePFRIaWaJLS8U4x-HhhB4U2WVkCz2OJZC59wtzL8SXgUhql69y9rR2V4jgkiCwEQwimfu6xclMnYxB2uXFShu0lwuDssOFLP7XTSri7I3UG7yICH8bDvq6iIE24C7tHtlx0LjKzIRkDkxv7heypKw-e6Opf9SWI",
+               "width" : 3467
+            }
+         ],
+         "place_id" : "ChIJCRSZT6MCaDQRKgWEbTELlDo",
+         "plus_code" : {
+            "compound_code" : "XFW7+XF Banqiao District, New Taipei City, Taiwan",
+            "global_code" : "7QP3XFW7+XF"
+         },
+         "price_level" : 1,
+         "rating" : 3.6,
+         "reference" : "ChIJCRSZT6MCaDQRKgWEbTELlDo",
+         "scope" : "GOOGLE",
+         "types" : [ "restaurant", "food", "point_of_interest", "establishment" ],
+      "user_ratings_total" : 240,
+      "vicinity" : "No. 18號, Lane 308, Chongqing Road, Banqiao District"
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.9978115,
+               "lng" : 121.4639726
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 24.9991729302915,
+                  "lng" : 121.4653594802915
+               },
+               "southwest" : {
+                  "lat" : 24.99647496970849,
+                  "lng" : 121.4626615197085
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+         "icon_background_color" : "#FF9E67",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+         "name" : "停看吃食光小館",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "photos" : [
+            {
+               "height" : 1080,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/101476244246370443500\"\u003eLIN LIU\u003c/a\u003e"
+               ],
+               "photo_reference" : "Aap_uEAW_bV4XXzJf4penFUy99J3cvf3Xj_dVoiOHrLdPM_TuM7fhxX8ZcRepoD6YEmFVa0KjBnD8UBFJGQmwLTf4K5uGxSLHv0ePKI75M5e1xypSd0Cnb05DRKcciDAyoJOZPm1EbpUUhl48mjSvVhGn_IegFv4yuzkTSoINnJSlZKDjDUk",
+               "width" : 1920
+            }
+         ],
+         "place_id" : "ChIJhQbdRqMCaDQRwWAsWgZaIKg",
+         "plus_code" : {
+            "compound_code" : "XFX7+4H Banqiao District, New Taipei City, Taiwan",
+            "global_code" : "7QP3XFX7+4H"
+         },
+         "price_level" : 1,
+         "rating" : 4.6,
+         "reference" : "ChIJhQbdRqMCaDQRwWAsWgZaIKg",
+         "scope" : "GOOGLE",
+         "types" : [ "restaurant", "food", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 231,
+         "vicinity" : "No. 322號, 重慶路, 板橋區"
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.9983945,
+               "lng" : 121.463983
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 24.9997325802915,
+                  "lng" : 121.4652942302915
+               },
+               "southwest" : {
+                  "lat" : 24.9970346197085,
+                  "lng" : 121.4625962697085
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+         "icon_background_color" : "#FF9E67",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+         "name" : "明治坊早午餐-板橋重慶店",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "photos" : [
+            {
+               "height" : 3480,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/117631934955785341662\"\u003emilk liu\u003c/a\u003e"
+               ],
+               "photo_reference" : "Aap_uEC5rnOk4dd1qg7Xt-qXRmEgzUKSdJWZt75LnnOENUqLvQjxOZTwQiGVLy8iOGJUP7kWZ3vIQUvICL5g8i0YNq1z9Q9mHaUeM_eFa4YnqfZrguQRO5xIbHM6CjNytN7BTkhZ1XB6mfEypjS997S_xoPuSGkNxdBxLn_V6X830ffvRzVL",
+               "width" : 4640
+            }
+         ],
+         "place_id" : "ChIJSWpYaqMCaDQR8gy6A1_6T2o",
+         "plus_code" : {
+            "compound_code" : "XFX7+9H Banqiao District, New Taipei City, Taiwan",
+            "global_code" : "7QP3XFX7+9H"
+         },
+         "price_level" : 1,
+         "rating" : 4.3,
+         "reference" : "ChIJSWpYaqMCaDQR8gy6A1_6T2o",
+         "scope" : "GOOGLE",
+         "types" : [ "restaurant", "food", "point_of_interest", "establishment" ],
+        "user_ratings_total" : 59,
+         "vicinity" : "No. 329號, Chongqing Road, Banqiao District"
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.9976772,
+               "lng" : 121.4680369
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 24.9990254302915,
+                  "lng" : 121.4693896802915
+               },
+               "southwest" : {
+                  "lat" : 24.9963274697085,
+                  "lng" : 121.4666917197085
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+         "icon_background_color" : "#FF9E67",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+         "name" : "九品當歸豬腳",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "photos" : [
+            {
+               "height" : 3024,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/112293317066463076444\"\u003e九品當歸豬腳\u003c/a\u003e"
+               ],
+               "photo_reference" : "Aap_uECHGbMPbyLTtS28p-MFAa3tEtAsQ_0Vl7_RfefP5L4dc24dh-VlbnoowTC6OiHp8sIYIjoG5TJQ2tYFT4gcXXAPKDD6P9OjfXnRf6oSSUk3CbUSQZrDdPiih0oYx3hhUw-isnmMnfas9EFKZZV4XQE47JV8V0k6cTKJzjDSYJlNACiL",
+               "width" : 4032
+            }
+         ],
+         "place_id" : "ChIJK1aQsBSoQjQRWnrdJ043ytA",
+         "plus_code" : {
+            "compound_code" : "XFX9+36 Zhonghe District, New Taipei City, Taiwan",
+            "global_code" : "7QP3XFX9+36"
+         },
+         "price_level" : 1,
+         "rating" : 4,
+         "reference" : "ChIJK1aQsBSoQjQRWnrdJ043ytA",
+         "scope" : "GOOGLE",
+         "types" : [ "restaurant", "food", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 245,
+         "vicinity" : "1樓, No. 230號, Minde Road, Zhonghe District"
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.996832,
+               "lng" : 121.4612833
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 24.9981829802915,
+                  "lng" : 121.4626448302915
+               },
+               "southwest" : {
+                  "lat" : 24.9954850197085,
+                  "lng" : 121.4599468697085
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+         "icon_background_color" : "#FF9E67",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+         "name" : "黑珍豬鮮肉水餃/板橋美食/板橋冷凍水餃/板橋小吃/板橋水餃/亞東醫院美食/亞東醫院小吃",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "photos" : [
+            {
+               "height" : 3024,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/105066427756116381361\"\u003eAnnie Chou\u003c/a\u003e"
+               ],
+               "photo_reference" : "Aap_uECTJhG79J9jo8NznfgpzkXurUFqpQpAMdQ8euAqKQE2dk_p0BkJ1eWFW6KnLsd5Nuiyu1lXWTjr0G5L5Mk3-frtiBP7W5F0DE1IndTTixmIPlYWnL2bhxAgdtm8NrCLxv1d8VZve668tRYEbtzNEG013Wq9nwB3NR32fmJtSgRkGZhc",
+               "width" : 4032
+            }
+         ],
+         "place_id" : "ChIJgUkbOLsCaDQRDA49yqWZ5kA",
+         "plus_code" : {
+            "compound_code" : "XFW6+PG Banqiao District, New Taipei City, Taiwan",
+            "global_code" : "7QP3XFW6+PG"
+         },
+         "price_level" : 1,
+         "rating" : 4.3,
+         "reference" : "ChIJgUkbOLsCaDQRDA49yqWZ5kA",
+         "scope" : "GOOGLE",
+         "types" : [ "restaurant", "food", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 90,
+         "vicinity" : "No. 4號 號, Lane 149, Guoqing Road, Banqiao District"
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.999591,
+               "lng" : 121.4628647
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.0009531802915,
+                  "lng" : 121.4643632302915
+               },
+               "southwest" : {
+                  "lat" : 24.9982552197085,
+                  "lng" : 121.4616652697085
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+         "icon_background_color" : "#FF9E67",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+         "name" : "甘泉魚麵 (板橋重慶店)",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "photos" : [
+            {
+               "height" : 3024,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/101980199038767064877\"\u003e王緯瑊\u003c/a\u003e"
+               ],
+               "photo_reference" : "Aap_uEBkuhYghtrcR-FjIFnRTU7lLU72mLWz0JaUMviX3NKyllmXHSUBHU8xvSG3KvbH-MbIwexX5sMrYYGyDTWK8Fcj1cwiXSIEXqysyVdwP-bzDzOhP8NcQIRL2-qf9EODLN3ZA3mmy5QJShmtqSMxTdjI1JFsy1fqHnCzfwl2bmXd8jUj",
+               "width" : 4032
+            }
+         ],
+         "place_id" : "ChIJmWtGfqMCaDQRTXlBX8O2yB0",
+         "plus_code" : {
+            "compound_code" : "XFX7+R4 Banqiao District, New Taipei City, Taiwan",
+            "global_code" : "7QP3XFX7+R4"
+         },
+         "price_level" : 2,
+         "rating" : 4.1,
+         "reference" : "ChIJmWtGfqMCaDQRTXlBX8O2yB0",
+         "scope" : "GOOGLE",
+         "types" : [ "restaurant", "food", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 454,
+         "vicinity" : "No. 278-1號, Chongqing Road, Banqiao District"
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.9964072,
+               "lng" : 121.4675347
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 24.9977696802915,
+                  "lng" : 121.4688863802915
+               },
+               "southwest" : {
+                  "lat" : 24.99507171970849,
+                  "lng" : 121.4661884197085
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+         "icon_background_color" : "#FF9E67",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+         "name" : "雞婆的好吃雞排",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "photos" : [
+            {
+               "height" : 3024,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/112521336523713521258\"\u003e朱雲英\u003c/a\u003e"
+               ],
+               "photo_reference" : "Aap_uEA27NN1QDViuRHlk0pbqCD--BudoP4faY8wmbDS9SzrVCF4oZ4ChjEyvgpnCZxWwkTcvrXNohA-HOeRYbVFiGGpIm7ZIRsWYAYeVAdKA3bsDg1L524Afz61yN3Yyr0s0lRoTZX6ZGYkrEWiUVUqTcMF_j9vFNKpkjzWEM0h4GH361X8",
+               "width" : 3024
+            }
+         ],
+         "place_id" : "ChIJX4FtzqICaDQRmapZwRuyYb0",
+         "plus_code" : {
+            "compound_code" : "XFW9+H2 Zhonghe District, New Taipei City, Taiwan",
+            "global_code" : "7QP3XFW9+H2"
+         },
+         "rating" : 4.5,
+         "reference" : "ChIJX4FtzqICaDQRmapZwRuyYb0",
+         "scope" : "GOOGLE",
+         "types" : [ "restaurant", "food", "point_of_interest", "store", "establishment" ],
+         "user_ratings_total" : 69,
+         "vicinity" : "No. 88號, Huafu Street, Zhonghe District"
+      },
+     {
+         "business_status" : "OPERATIONAL",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.99902909999999,
+               "lng" : 121.4629413
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.0003400302915,
+                  "lng" : 121.4642976302915
+               },
+               "southwest" : {
+                  "lat" : 24.99764206970849,
+                  "lng" : 121.4615996697085
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+         "icon_background_color" : "#FF9E67",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+         "name" : "郎港式鮮肉包",
+        "opening_hours" : {
+           "open_now" : false
+        },
+         "photos" : [
+            {
+               "height" : 1536,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/114909898182792780085\"\u003eBing Ju\u003c/a\u003e"
+               ],
+               "photo_reference" : "Aap_uEB6QX8ZmwMc5xkcu4zWPERffgZxuVyriQBEsOQRJ4EEP5ZcLr5weJccZJVubbkQU_QL1e-mEUcWPiO3X9l8k1-glWSNT3dZE1giTlX7Qr3t1M2xO_RHMD4EQ60LeEid5wcUSqiltxsAqTioQyAtaHnbgqfbj6yD3YaSwuKY0W7oNnWo",
+               "width" : 2048
+            }
+         ],
+         "place_id" : "ChIJ4VOqY6MCaDQRsMk728SmXFg",
+         "plus_code" : {
+            "compound_code" : "XFX7+J5 Banqiao District, New Taipei City, Taiwan",
+            "global_code" : "7QP3XFX7+J5"
+         },
+         "rating" : 4.4,
+         "reference" : "ChIJ4VOqY6MCaDQRsMk728SmXFg",
+         "scope" : "GOOGLE",
+         "types" : [ "restaurant", "food", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 23,
+         "vicinity" : "No. 6, Lane 290, Chongqing Road, Banqiao District"
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.99323,
+               "lng" : 121.462772
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 24.99456093029151,
+                  "lng" : 121.4639842802915
+               },
+               "southwest" : {
+                  "lat" : 24.9918629697085,
+                  "lng" : 121.4612863197085
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+         "icon_background_color" : "#FF9E67",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+         "name" : "AGUSTO 奧古斯托義法料理 板橋店",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "photos" : [
+            {
+               "height" : 1108,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/112725603292188964534\"\u003eAGUSTO 奧古斯托義法料理 板橋店\u003c/a\u003e"
+               ],
+               "photo_reference" : "Aap_uECt6eUO8ClO4RdO5GRWhnFcLyJmGwVJ47jNhSMyfqTqrWyd6vsRaG5RoW48_8VMMuLJf-mmaJQTM5e5rjejQze2WiJFJy8MpQxEIZ8odtZszTnH_jmm8bbCe0UdrTk4N2eKSIS4uAMAzgelDKJZ11fND2VEavLml8cU4Y2NsG9KR0SI",
+               "width" : 1477
+            }
+         ],
+         "place_id" : "ChIJpWVXdbwCaDQRGd0EsgzMjas",
+         "plus_code" : {
+            "compound_code" : "XFV7+74 Banqiao District, New Taipei City, Taiwan",
+            "global_code" : "7QP3XFV7+74"
+         },
+         "price_level" : 2,
+         "rating" : 4.7,
+         "reference" : "ChIJpWVXdbwCaDQRGd0EsgzMjas",
+         "scope" : "GOOGLE",
+         "types" : [
+            "meal_takeaway",
+            "bar",
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "store",
+            "establishment"
+         ],
+         "user_ratings_total" : 1910,
+         "vicinity" : "No. 55號, Guanghe Street, Banqiao District"
+      },
+      {
+       "business_status" : "OPERATIONAL",
+         "geometry" : {
+            "location" : {
+               "lat" : 25.00020090000001,
+               "lng" : 121.462898
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 25.0015635802915,
+                  "lng" : 121.4643392302915
+               },
+               "southwest" : {
+                  "lat" : 24.9988656197085,
+                  "lng" : 121.4616412697085
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+         "icon_background_color" : "#FF9E67",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+         "name" : "PIZZA HUT必勝客板橋重慶店",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "photos" : [
+            {
+               "height" : 3024,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/114402807269083630813\"\u003e23號\u003c/a\u003e"
+               ],
+               "photo_reference" : "Aap_uEDai8_G2kyOgzGt1VQWVDavSEol21_H6HPnu6KULIjEjgljBvtnRfjdD6BNmsoYTOH5jXHaRAUxjviCStaHNmglcvo6_sg25-GnYr36I-zz_vmrsdfL65UXE2Af2E3BN-g4sZwAl0lu0Z4WXXnsoe4S2q5zoOXuZXWbqfsXZv9Nnta8",
+               "width" : 4032
+            }
+         ],
+         "place_id" : "ChIJ2-Eih6MCaDQRSfcX90WydEI",
+         "plus_code" : {
+            "compound_code" : "2F27+35 Banqiao District, New Taipei City, Taiwan",
+            "global_code" : "7QQ32F27+35"
+         },
+         "price_level" : 2,
+         "rating" : 3.9,
+         "reference" : "ChIJ2-Eih6MCaDQRSfcX90WydEI",
+         "scope" : "GOOGLE",
+         "types" : [
+            "meal_delivery",
+            "meal_takeaway",
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "establishment"
+         ],
+         "user_ratings_total" : 314,
+         "vicinity" : "No. 276-2號, Chongqing Road, Banqiao District"
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.9962633,
+               "lng" : 121.4652105
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 24.99762993029151,
+                  "lng" : 121.4665050802915
+               },
+               "southwest" : {
+                  "lat" : 24.9949319697085,
+                  "lng" : 121.4638071197085
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+         "icon_background_color" : "#FF9E67",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+         "name" : "Ga Shang Bao Breakfast Restaurant",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "photos" : [
+            {
+               "height" : 3024,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/102154668543449307307\"\u003eRongRong yea\u003c/a\u003e"
+               ],
+               "photo_reference" : "Aap_uEBha-NWPRBZaXTnSOJSR0wfH2YkHiK0wa4wavXyvb5kA_fXdEEQrqvHR5_2xjfTNZ_BnNVmoaKv4UXy4wtcxvvCfhVkZLxVRAA3HJ9_Ze4tVeTWL7A8dW7KphqgLpkOtMrvqmiKHNoliy40zG3xxztfKq06u0vN6563k85fMF0eH_k",
+               "width" : 4032
+            }
+         ],
+         "place_id" : "ChIJxdxh0bwCaDQRjuGDB5RZVmE",
+         "plus_code" : {
+            "compound_code" : "XFW8+G3 Zhonghe District, New Taipei City, Taiwan",
+            "global_code" : "7QP3XFW8+G3"
+         },
+         "rating" : 4,
+         "reference" : "ChIJxdxh0bwCaDQRjuGDB5RZVmE",
+         "scope" : "GOOGLE",
+         "types" : [ "restaurant", "food", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 53,
+         "vicinity" : "No. 133, Huashun Street, Zhonghe District"
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.9965713,
+               "lng" : 121.4651126
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 24.9979094802915,
+                  "lng" : 121.4665030802915
+               },
+               "southwest" : {
+                  "lat" : 24.9952115197085,
+                  "lng" : 121.4638051197085
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+         "icon_background_color" : "#FF9E67",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+         "name" : "Q burger 中和華順店",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "photos" : [
+            {
+               "height" : 2269,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/110032164958894256086\"\u003eQ burger 中和華順店\u003c/a\u003e"
+               ],
+               "photo_reference" : "Aap_uECO271MoNG4Jnf6dpP2hoyyx6IRhpKkjr5XClukm2zzSHu02GelWmJDWYTsfIN2u5MWWBozOsbFH73VTg2Cgaw1h75J--6RQqObHMnfmqJvu-jdw-QYovT6BdhUrjxpdwHwByXye-IjZGSasFilJ-yajtbi7SrWz-DLhI5oRHGuYvgU",
+               "width" : 4032
+            }
+         ],
+         "place_id" : "ChIJgY9axT0DaDQRHZCitq6MlIY",
+         "plus_code" : {
+            "compound_code" : "XFW8+J2 Zhonghe District, New Taipei City, Taiwan",
+            "global_code" : "7QP3XFW8+J2"
+         },
+         "rating" : 3.7,
+         "reference" : "ChIJgY9axT0DaDQRHZCitq6MlIY",
+         "scope" : "GOOGLE",
+         "types" : [ "restaurant", "food", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 90,
+         "vicinity" : "No. 120號, Huashun Street, Zhonghe District"
+      },
+      {
+         "business_status" : "OPERATIONAL",
+         "geometry" : {
+            "location" : {
+               "lat" : 24.9967204,
+               "lng" : 121.4652169
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 24.9980705802915,
+                  "lng" : 121.4665607302915
+               },
+               "southwest" : {
+                  "lat" : 24.9953726197085,
+                  "lng" : 121.4638627697085
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+         "icon_background_color" : "#FF9E67",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+         "name" : "巨林美而美",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "photos" : [
+            {
+               "height" : 3024,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/117219994812644515091\"\u003e咖嚓咖嚓愛分享\u003c/a\u003e"
+               ],
+               "photo_reference" : "Aap_uEDRNQpPaj20C6phXVK4_0nNIdk2NT5TBUleLbeTLsuR34I5klutJjo9D71biCV9-_mXW3-cS5KTfOWmmGpzz2lz0dtBDY2r_FSUnJBlfEmETH4FGH153FW8rslQAENxiECDk9FPsPFw7ymCg6mrkqi3dUTFHEFTx4j4tH7evFgu74k6",
+               "width" : 4032
+            }
+         ],
+         "place_id" : "ChIJv7maLKMCaDQRNxe4QVdX-qI",
+         "plus_code" : {
+            "compound_code" : "XFW8+M3 Zhonghe District, New Taipei City, Taiwan",
+            "global_code" : "7QP3XFW8+M3"
+         },
+         "price_level" : 1,
+         "rating" : 4.1,
+         "reference" : "ChIJv7maLKMCaDQRNxe4QVdX-qI",
+         "scope" : "GOOGLE",
+         "types" : [ "restaurant", "food", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 52,
+         "vicinity" : "1 樓, No. 1, Alley 2, Lane 42, Huafu Street, Zhonghe District"
+      }
+   ],
+   "status" : "OK"
+}
