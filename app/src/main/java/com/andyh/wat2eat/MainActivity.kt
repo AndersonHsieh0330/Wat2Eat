@@ -28,6 +28,7 @@ import com.google.android.gms.tasks.Task
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -47,6 +48,11 @@ class MainActivity : AppCompatActivity() {
 
     //PlaceID of a currently opened restaurant
     private var placeID:String? = null
+
+    //We retrieve restaurant rating during the "Nearby Search" request
+    //since "Rating" is in the category of "Atmosphere Data", which will be counted as additional cost to Place Detail request
+    //*Note: Name, Address, URL are in "Basic Data" category, no additional cost
+    private var restaurantRating:Int? = null;
 
     //keep track of restaurants that were presented to user before
     //to avoid showing duplicate restaurants
@@ -140,23 +146,23 @@ class MainActivity : AppCompatActivity() {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         searchBTN = binding.MainActivitySearchBTN
         //set listeners to buttons
-        searchBTN.setOnClickListener {
-            val restaurantFragment = RestaurantFragment()
-            supportFragmentManager.beginTransaction().replace(R.id.MainActivity_restaurantFragmentContainer, restaurantFragment).commit()
-        }
-//        getLocationBtn.setOnClickListener {
-//            if(isDataReady) {
-//                for(i in dataContainer.indices){
-//                    placeID = searchCurrentPage(dataContainer[i])
-//                    if(placeID!=null){
-//                        placesFoundPreviously.add(placeID.toString())
-//                        getPlaceDetail(placeID)
-//                        break
-//                    }
-//                }
-//                //no restaurant available in all the available pages
-//            }
+//         searchBTN.setOnClickListener {
+//            val restaurantFragment = RestaurantFragment()
+//            supportFragmentManager.beginTransaction().replace(R.id.MainActivity_restaurantFragmentContainer, restaurantFragment).commit()
 //        }
+        searchBTN.setOnClickListener {
+            if(isDataReady) {
+                for(i in dataContainer.indices){
+                    placeID = searchCurrentPage(dataContainer[i])
+                    if(placeID!=null){
+                        placesFoundPreviously.add(placeID.toString())
+                        getPlaceDetail(placeID,restaurantRating)
+                        break
+                    }
+                }
+                //no restaurant available in all the available pages
+            }
+        }
     }
 
     private fun fetchNearByRestaurantData(){
@@ -194,33 +200,33 @@ class MainActivity : AppCompatActivity() {
 
         val restaurantRequest = StringRequest(Request.Method.GET,
                 queryURL,
-                Response.Listener<String> { response ->
-                    //Log.d("MainActivity","First response $response" )
-                    try {
+            { response ->
+                //Log.d("MainActivity","First response $response" )
+                try {
 
-                        dataContainer.add(JSONObject(response))
-                        pageCount += 1;
-                        //first page has been initialized
+                    dataContainer.add(JSONObject(response))
+                    pageCount += 1;
+                    //first page has been initialized
 
-                        if(dataContainer[pageCount-1].has("next_page_token")) {
-                            //user could be in the middle of no where and there's not enough restaurants for second page of data
-                            val nextPageToken = dataContainer[pageCount - 1].getString("next_page_token")
+                    if(dataContainer[pageCount-1].has("next_page_token")) {
+                        //user could be in the middle of no where and there's not enough restaurants for second page of data
+                        val nextPageToken = dataContainer[pageCount - 1].getString("next_page_token")
 
-                            Handler().postDelayed(Runnable {
-                                //the next page token becomes available after a short time delay(refer to Google Places API docs)
-                                //thus we delay the request to avoid error
-                                makeNextPageRequest(nextPageToken)
-                            }, 2000)
+                        Handler().postDelayed(Runnable {
+                            //the next page token becomes available after a short time delay(refer to Google Places API docs)
+                            //thus we delay the request to avoid error
+                            makeNextPageRequest(nextPageToken)
+                        }, 2000)
 
-                        }else{
-                            //done fetching data from Places API, start scanning for opening restaurants
-                            isDataReady = true
-                        }
-                    }catch (exception: JSONException){
-                        Log.d("MainActivity", "Got page $pageCount response, but failed to make request for page2. Error Message: ${exception.message}")
+                    }else{
+                        //done fetching data from Places API, start scanning for opening restaurants
+                        isDataReady = true
                     }
-                },
-                Response.ErrorListener { error -> Log.d("MainActivity", "Failed to get page $pageCount response  Error Message: ${error.message}")})
+                }catch (exception: JSONException){
+                    Log.d("MainActivity", "Got page $pageCount response, but failed to make request for page2. Error Message: ${exception.message}")
+                }
+            },
+            { error -> Log.d("MainActivity", "Failed to get page $pageCount response  Error Message: ${error.message}")})
 
         queue.add(restaurantRequest)
     }
@@ -231,7 +237,7 @@ class MainActivity : AppCompatActivity() {
 
         val nextPageRequest = StringRequest(Request.Method.GET,
             queryURL,
-            Response.Listener<String> { response ->
+            { response ->
                 //Log.d("MainActivity", "Next page response: $response")
                 try {
                     dataContainer.add(JSONObject(response))
@@ -255,35 +261,41 @@ class MainActivity : AppCompatActivity() {
                 }
 
             },
-            Response.ErrorListener { error -> Log.d("MainActivity", "Page $pageCount request failed ${error.toString()}")})
+            { error -> Log.d("MainActivity", "Page $pageCount request failed ${error.toString()}")})
         queue.add(nextPageRequest);
 
     }
 
-    private fun getPlaceDetail(placeID:String?){
+    private fun getPlaceDetail(placeID:String?, rating:Int?){
+        val LANGUAGE_TAG = Locale.getDefault().toLanguageTag()
+        val ADDRESS_TAG = "formatted_address"
+        val NAME_TAG = "name"
+        val URL_TAG = "url"
+        val PHOTO_TAG = "photo"
         if(placeID== null){
             //should never get here, there should be a restaurant open if this function is called
         }else{
-            val queryURL:String = "https://maps.googleapis.com/maps/api/place/details/json?language=zh-TW&fields=name,formatted_address,rating,url&place_id=$placeID&key=$apiKey"
+            val queryURL:String = "https://maps.googleapis.com/maps/api/place/details/json?language=zh-TW&fields=$NAME_TAG,$ADDRESS_TAG,$URL_TAG,$PHOTO_TAG&place_id=$placeID&key=$apiKey"
             val nextPageRequest = StringRequest(Request.Method.GET,
                     queryURL,
-                    Response.Listener<String> { response ->
-                        try {
-                            val jsonObject = JSONObject(response)
-                            val placeDetail = jsonObject.getJSONObject("result")
+                { response ->
+                    try {
+                        val jsonObject = JSONObject(response)
+                        val placeDetail = jsonObject.getJSONObject("result")
+                        Log.d("PPPPPP", "getPlaceDetail: $placeDetail")
+                        val restaurantAddress = placeDetail.getString("formatted_address")
+                        val restaurantName = placeDetail.getString("name")
+                        val restaurantRating = rating
+                        val restaurantURL = placeDetail.getString("url")
 
-                            val restaurantAddress = placeDetail.getString("formatted_address")
-                            val restaurantName = placeDetail.getString("name")
-                            val restaurantRating = placeDetail.getInt("rating")
-                            val restaurantURL = placeDetail.getString("url")
-                            Log.d("MainActivity","Place detail response: \naddress: $restaurantAddress\nname: $restaurantName\nRating: $restaurantRating\nURL: $restaurantURL ")
+                        //Log.d("MainActivity","Place detail response: \naddress: $restaurantAddress\nname: $restaurantName\nRating: $restaurantRating\nURL: $restaurantURL ")
 
-                        }catch (exception:JSONException){
-                            Log.d("MainActivity", "place detail response failed")
-                        }
+                    }catch (exception:JSONException){
+                        Log.d("MainActivity", "place detail response failed")
+                    }
 
-                    },
-                    Response.ErrorListener { error -> Log.d("MainActivity", "Next page request failed ${error.toString()}")})
+                },
+                { error -> Log.d("MainActivity", "Next page request failed ${error.toString()}")})
             queue.add(nextPageRequest);
         }
     }
@@ -300,6 +312,8 @@ class MainActivity : AppCompatActivity() {
                 val currentRestaurantPlaceID = restaurant.getString("place_id")
                 if(isOpen&&!placesFoundPreviously.contains(currentRestaurantPlaceID)){
                     //return restaurant placeID if found
+                        // also initialize restaurant rating alone with placeID found
+                            restaurantRating = restaurant.getInt("rating")
                     return currentRestaurantPlaceID
                 }
             }catch (exception: JSONException){
