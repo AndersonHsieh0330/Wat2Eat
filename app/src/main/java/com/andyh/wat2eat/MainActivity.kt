@@ -6,17 +6,13 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import android.view.Menu
-import android.view.MenuInflater
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.replace
 import com.android.volley.Request
 import com.android.volley.RequestQueue
-import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.andyh.wat2eat.databinding.ActivityMainBinding
@@ -28,6 +24,7 @@ import com.google.android.gms.tasks.Task
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
+import java.net.URL
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -37,6 +34,15 @@ class MainActivity : AppCompatActivity() {
     private val FINELOCATIONRQ = 101;
     private lateinit var queue:RequestQueue;
     private val apiKey = "AIzaSyDk0zxRUPq73N7hQ8nw7VhEgGcMdKRCpws"
+
+    //parameter tags for API calls
+    val LANGUAGE_TAG = Locale.getDefault().toLanguageTag()
+    val ADDRESS_TAG = "formatted_address"
+    val NAME_TAG = "name"
+    val URL_TAG = "url"
+    val RATING_TAG = "rating"
+    val PHOTO_TAG = "photo"
+    val PHOTOREFERENCE_TAG = "photo_reference"
 
     //since google counts one nearby search and two follow up next page query as one whole query and charge accordingly
     //only allow each search to make two next_page queries following a nearby search request
@@ -52,7 +58,7 @@ class MainActivity : AppCompatActivity() {
     //We retrieve restaurant rating during the "Nearby Search" request
     //since "Rating" is in the category of "Atmosphere Data", which will be counted as additional cost to Place Detail request
     //*Note: Name, Address, URL are in "Basic Data" category, no additional cost
-    private var restaurantRating:Int? = null;
+    private var restaurantRating:Double? = null;
 
     //keep track of restaurants that were presented to user before
     //to avoid showing duplicate restaurants
@@ -66,6 +72,10 @@ class MainActivity : AppCompatActivity() {
 
 
     private lateinit var binding: ActivityMainBinding
+
+    interface restaurantDisplayListener{
+        fun onPhotoFound();
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -266,16 +276,12 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun getPlaceDetail(placeID:String?, rating:Int?){
-        val LANGUAGE_TAG = Locale.getDefault().toLanguageTag()
-        val ADDRESS_TAG = "formatted_address"
-        val NAME_TAG = "name"
-        val URL_TAG = "url"
-        val PHOTO_TAG = "photo"
+    private fun getPlaceDetail(placeID:String?, rating:Double?){
+
         if(placeID== null){
             //should never get here, there should be a restaurant open if this function is called
         }else{
-            val queryURL:String = "https://maps.googleapis.com/maps/api/place/details/json?language=zh-TW&fields=$NAME_TAG,$ADDRESS_TAG,$URL_TAG,$PHOTO_TAG&place_id=$placeID&key=$apiKey"
+            val queryURL:String = "https://maps.googleapis.com/maps/api/place/details/json?language=$LANGUAGE_TAG&fields=$NAME_TAG,$ADDRESS_TAG,$URL_TAG,$PHOTO_TAG&place_id=$placeID&key=$apiKey"
             val nextPageRequest = StringRequest(Request.Method.GET,
                     queryURL,
                 { response ->
@@ -285,10 +291,14 @@ class MainActivity : AppCompatActivity() {
                         Log.d("PPPPPP", "getPlaceDetail: $placeDetail")
                         val restaurantAddress = placeDetail.getString("formatted_address")
                         val restaurantName = placeDetail.getString("name")
-                        val restaurantRating = rating
                         val restaurantURL = placeDetail.getString("url")
+                        val restaurantPhotoArray = placeDetail.getJSONArray("photos")
 
-                        //Log.d("MainActivity","Place detail response: \naddress: $restaurantAddress\nname: $restaurantName\nRating: $restaurantRating\nURL: $restaurantURL ")
+                        //pick random photo out of all the photo returned
+                        val restaurantPhotoReference = restaurantPhotoArray.getJSONObject(((0 until restaurantPhotoArray.length()).random())).getString("photo_reference")
+
+                        sendDataToDisplay(restaurantName,restaurantRating,restaurantAddress,restaurantURL,restaurantPhotoReference)
+                        Log.d("MainActivity","Place detail response: \naddress: $restaurantAddress\nname: $restaurantName\nRating: $rating\nURL: $restaurantURL\nPhoto_reference: $restaurantPhotoReference")
 
                     }catch (exception:JSONException){
                         Log.d("MainActivity", "place detail response failed")
@@ -313,7 +323,7 @@ class MainActivity : AppCompatActivity() {
                 if(isOpen&&!placesFoundPreviously.contains(currentRestaurantPlaceID)){
                     //return restaurant placeID if found
                         // also initialize restaurant rating alone with placeID found
-                            restaurantRating = restaurant.getInt("rating")
+                            restaurantRating = restaurant.getDouble("rating")
                     return currentRestaurantPlaceID
                 }
             }catch (exception: JSONException){
@@ -325,6 +335,22 @@ class MainActivity : AppCompatActivity() {
         }
         //only gets here when no restaurant is open in current page
         return null
+    }
+
+    fun sendDataToDisplay(restaurantName:String,restaurantRating:Double?,restaurantAddress:String,restaurantURL:String,restaurantPhotoReference:String){
+        val bundle = Bundle()
+
+        //pass default values over if there are no values received from api response
+        bundle.putString(NAME_TAG, restaurantName.toString())
+        bundle.putDouble(RATING_TAG, restaurantRating?:0.0)
+        bundle.putString(ADDRESS_TAG, restaurantAddress.toString())
+        bundle.putString(URL_TAG, restaurantURL.toString())
+        bundle.putString(PHOTOREFERENCE_TAG, restaurantPhotoReference.toString())
+        val restaurantFragment = RestaurantFragment()
+        restaurantFragment.arguments = bundle
+
+        supportFragmentManager.beginTransaction().replace(R.id.MainActivity_restaurantFragmentContainer, restaurantFragment).commit()
+
     }
 
     override fun onStop() {
