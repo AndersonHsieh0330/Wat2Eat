@@ -25,7 +25,7 @@ class LoadingFragment : Fragment() {
         // Inflate the layout for this fragment
 
         binding = FragmentLoadingBinding.inflate(inflater,container,false)
-
+        initElement()
         return binding.root
     }
 

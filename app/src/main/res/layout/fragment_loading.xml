@@ -34,10 +34,13 @@
             android:id="@+id/LoadingFragment_progressBar"
             android:layout_height="30sp"
             android:layout_width="30sp"
-            app:layout_constraintStart_toEndOf="@id/TextFragment_statusText"
-            app:layout_constraintTop_toTopOf="@id/TextFragment_statusText"
-            app:layout_constraintBottom_toBottomOf="@id/TextFragment_statusText"
-            android:outlineAmbientShadowColor="@color/black" />
+            android:layout_marginLeft="10dp"
+            app:layout_constraintStart_toEndOf="@id/LoadingFragment_messageText"
+            app:layout_constraintTop_toTopOf="@id/LoadingFragment_messageText"
+            app:layout_constraintBottom_toBottomOf="@id/LoadingFragment_messageText"
+            android:outlineAmbientShadowColor="@color/black"
+            android:indeterminateTint="@color/black"
+            android:indeterminate="true" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -87,7 +87,6 @@ class MainActivity : AppCompatActivity() {
         queue = Volley.newRequestQueue(this)
         initElements()
 
-        launchTextFragment( "Press search to find a restaurant")
         val loadFrag = LoadingFragment()
         supportFragmentManager.beginTransaction().add(R.id.MainActivity_restaurantFragmentContainer, loadFrag).commit()
 
@@ -240,6 +239,9 @@ class MainActivity : AppCompatActivity() {
                     }else{
                         //done fetching data from Places API, start scanning for opening restaurants
                         isDataReady = true
+                        //let user know to that they can start searching restaurants
+                        launchTextFragment( "Press search to find a restaurant")
+
                     }
                 }catch (exception: JSONException){
                     Log.d("MainActivity", "Got page $pageCount response, but failed to make request for page2. Error Message: ${exception.message}")
@@ -273,6 +275,9 @@ class MainActivity : AppCompatActivity() {
                     }else{
                         //done fetching data from Places API, start scanning for opening restaurants
                         isDataReady = true
+                        //let user know to that they can start searching restaurants
+                        launchTextFragment( "Press search to find a restaurant")
+
                     }
                 }catch (exception: JSONException){
                     Log.d("MainActivity", "Got page1 response, but failed to make request for page2. Error Message: ${exception.message}")
