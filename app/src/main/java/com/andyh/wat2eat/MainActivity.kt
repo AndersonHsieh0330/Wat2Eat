@@ -44,6 +44,10 @@ class MainActivity : AppCompatActivity() {
     val PHOTO_TAG = "photo"
     val PHOTOREFERENCE_TAG = "photo_reference"
 
+    //bundle tags
+    val STATUSMESSAGE_TAG = "statueMessage"
+
+
     //since google counts one nearby search and two follow up next page query as one whole query and charge accordingly
     //only allow each search to make two next_page queries following a nearby search request
     var pageLimit = 3
@@ -73,9 +77,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    interface restaurantDisplayListener{
-        fun onPhotoFound();
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,8 +87,11 @@ class MainActivity : AppCompatActivity() {
         queue = Volley.newRequestQueue(this)
         initElements()
 
-        fetchNearByRestaurantData()
+        launchTextFragment( "Press search to find a restaurant")
+        val loadFrag = LoadingFragment()
+        supportFragmentManager.beginTransaction().add(R.id.MainActivity_restaurantFragmentContainer, loadFrag).commit()
 
+        fetchNearByRestaurantData()
 
     }
 
@@ -163,14 +167,19 @@ class MainActivity : AppCompatActivity() {
         searchBTN.setOnClickListener {
             if(isDataReady) {
                 for(i in dataContainer.indices){
+                    //for each page of the dataContainer
                     placeID = searchCurrentPage(dataContainer[i])
                     if(placeID!=null){
                         placesFoundPreviously.add(placeID.toString())
                         getPlaceDetail(placeID,restaurantRating)
+                        Log.d("PPPP", "initElements: $i")
                         break
                     }
                 }
-                //no restaurant available in all the available pages
+                //done scanning all the pages
+                if(placeID==null) {
+                    launchTextFragment("No more restaurants are open")
+                }
             }
         }
     }
@@ -298,6 +307,7 @@ class MainActivity : AppCompatActivity() {
                         val restaurantPhotoReference = restaurantPhotoArray.getJSONObject(((0 until restaurantPhotoArray.length()).random())).getString("photo_reference")
 
                         sendDataToDisplay(restaurantName,restaurantRating,restaurantAddress,restaurantURL,restaurantPhotoReference)
+
                         Log.d("MainActivity","Place detail response: \naddress: $restaurantAddress\nname: $restaurantName\nRating: $rating\nURL: $restaurantURL\nPhoto_reference: $restaurantPhotoReference")
 
                     }catch (exception:JSONException){
@@ -350,6 +360,15 @@ class MainActivity : AppCompatActivity() {
         restaurantFragment.arguments = bundle
 
         supportFragmentManager.beginTransaction().replace(R.id.MainActivity_restaurantFragmentContainer, restaurantFragment).commit()
+
+    }
+
+    private fun launchTextFragment(message: String){
+        val textFrag = TextFragment()
+        val bundle = Bundle()
+        bundle.putString(STATUSMESSAGE_TAG, message)
+        textFrag.arguments = bundle
+        supportFragmentManager.beginTransaction().add(R.id.MainActivity_restaurantFragmentContainer, textFrag).commit()
 
     }
 
