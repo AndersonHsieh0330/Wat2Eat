@@ -158,11 +158,8 @@ class MainActivity : AppCompatActivity() {
         //use view binding to bind view elements
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         searchBTN = binding.MainActivitySearchBTN
+
         //set listeners to buttons
-//         searchBTN.setOnClickListener {
-//            val restaurantFragment = RestaurantFragment()
-//            supportFragmentManager.beginTransaction().replace(R.id.MainActivity_restaurantFragmentContainer, restaurantFragment).commit()
-//        }
         searchBTN.setOnClickListener {
             if(isDataReady) {
                 for(i in dataContainer.indices){
@@ -181,6 +178,9 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+        //disable the button until data is ready
+        searchBTN.isEnabled = false;
     }
 
     private fun fetchNearByRestaurantData(){
@@ -239,6 +239,7 @@ class MainActivity : AppCompatActivity() {
                     }else{
                         //done fetching data from Places API, start scanning for opening restaurants
                         isDataReady = true
+                        searchBTN.isEnabled = true
                         //let user know to that they can start searching restaurants
                         launchTextFragment( "Press search to find a restaurant")
 
@@ -275,6 +276,7 @@ class MainActivity : AppCompatActivity() {
                     }else{
                         //done fetching data from Places API, start scanning for opening restaurants
                         isDataReady = true
+                        searchBTN.isEnabled = true
                         //let user know to that they can start searching restaurants
                         launchTextFragment( "Press search to find a restaurant")
 

@@ -14,12 +14,13 @@
     <color name="color3">#f4e8b6</color>
     <color name="color4">#b29e80</color>
     <color name="color5">#343436</color>
+    <color name ="color6">#f7f5eb</color>
 
     //dark theme color
-    <color name="color6">#8b7845</color>
-    <color name="color7">#c5b351</color>
-    <color name="color8">#8d573f</color>
-    <color name="color9">#c37647</color>
-    <color name="color10">#8b7d78</color>
+    <color name="color7">#8b7845</color>
+    <color name="color8">#c5b351</color>
+    <color name="color9">#8d573f</color>
+    <color name="color10">#c37647</color>
+    <color name="color11">#8b7d78</color>
 
 </resources>
