@@ -18,7 +18,7 @@ class TextFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentTextBinding.inflate(inflater,container,false)
 
         initElements()

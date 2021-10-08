@@ -19,6 +19,7 @@
         android:paddingLeft="100dp"
         android:paddingRight="100dp"
         android:text="Search"
+        android:textColor="?attr/searchTextColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

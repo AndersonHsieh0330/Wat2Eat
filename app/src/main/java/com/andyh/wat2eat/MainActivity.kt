@@ -1,7 +1,11 @@
 package com.andyh.wat2eat
 
+import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
+import android.location.LocationManager
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -36,16 +40,16 @@ class MainActivity : AppCompatActivity() {
     private val apiKey = "AIzaSyDk0zxRUPq73N7hQ8nw7VhEgGcMdKRCpws"
 
     //parameter tags for API calls
-    val LANGUAGE_TAG = Locale.getDefault().toLanguageTag()
-    val ADDRESS_TAG = "formatted_address"
-    val NAME_TAG = "name"
-    val URL_TAG = "url"
-    val RATING_TAG = "rating"
-    val PHOTO_TAG = "photo"
-    val PHOTOREFERENCE_TAG = "photo_reference"
+    private val LANGUAGETAG = Locale.getDefault().toLanguageTag()
+    private val ADDRESSTAG = "formatted_address"
+    private val NAMETAG = "name"
+    private val URLTAG = "url"
+    private val RATINGTAG = "rating"
+    private val PHOTOTAG = "photo"
+    private val PHOTOREFERENCETAG = "photo_reference"
 
     //bundle tags
-    val STATUSMESSAGE_TAG = "statueMessage"
+    val STATUSMESSAGETAG = "statueMessage"
 
 
     //since google counts one nearby search and two follow up next page query as one whole query and charge accordingly
@@ -98,27 +102,34 @@ class MainActivity : AppCompatActivity() {
     private fun checkForPermissions(permission:String, name:String, requestCode:Int){
         //check that user's OS systme has API level 23 or above
         //before API level 23, run time permission was not needed
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            when{
-                //check each statement individually
-                //when statement exit once a branch is executed
-                ContextCompat.checkSelfPermission(applicationContext,permission) == PackageManager.PERMISSION_GRANTED -> {
-                    //User already approved location permission
+        when{
+            //check each statement individually
+            //when statement exit once a branch is executed
+            ContextCompat.checkSelfPermission(applicationContext,permission) == PackageManager.PERMISSION_GRANTED -> {
+                //User already approved location permission
+                when {
+                    !isGPSOn() -> showGPSRequestDialog()
+                    !isWifiOn() -> showInternetConnectionRequestDialog()
+                    isGPSOn() && isWifiOn() ->{
+                        getLocation()
+                        Toast.makeText(applicationContext,"$name permission granted", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                if(isGPSOn()&&isWifiOn()){
                     getLocation()
                     Toast.makeText(applicationContext,"$name permission granted", Toast.LENGTH_SHORT).show()
-
                 }
+            }
 
-                shouldShowRequestPermissionRationale(permission) -> {
-                    showExplanationDialog();
+            shouldShowRequestPermissionRationale(permission) -> {
+                showPermissionExplanationDialog();
 
-                }
-                else -> {
-                    requestPermissions(
-                        arrayOf(permission),
-                        requestCode)
+            }
+            else -> {
+                requestPermissions(
+                    arrayOf(permission),
+                    requestCode)
 
-                }
             }
         }
 
@@ -147,12 +158,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showExplanationDialog(){
-        val dialogBuilder:AlertDialog.Builder =  AlertDialog.Builder(this)
-        dialogBuilder.setTitle("Permission Required")
-
-        dialogBuilder.create().show();
-    }
 
     private fun initElements(){
         //use view binding to bind view elements
@@ -168,13 +173,13 @@ class MainActivity : AppCompatActivity() {
                     if(placeID!=null){
                         placesFoundPreviously.add(placeID.toString())
                         getPlaceDetail(placeID,restaurantRating)
-                        Log.d("PPPP", "initElements: $i")
+                        Log.d("MainActivity", "initElements: $i")
                         break
                     }
                 }
                 //done scanning all the pages
                 if(placeID==null) {
-                    launchTextFragment("No more restaurants are open")
+                    launchTextFragment(resources.getString(R.string.outOfRestaurants))
                 }
             }
         }
@@ -199,7 +204,7 @@ class MainActivity : AppCompatActivity() {
                     makeRestaurantRequest(p0.result.latitude, p0.result.longitude)
                 }else{
                     //request failed, GPS might be off
-                    Toast.makeText(this,"Location Request Failed, turn on GPS", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,R.string.locationRequestFailed, Toast.LENGTH_SHORT).show()
                     Log.d("MainActivity", "Get Location Failed ${p0.exception?.message}")
                 }
             }
@@ -216,6 +221,7 @@ class MainActivity : AppCompatActivity() {
         val queryType = "restaurant"
         val queryURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=$latitude,$longitude&radius=$queryRadius&types=$queryType&key=$apiKey"
 
+        Log.d("MainActivity", "makeRestaurantRequest: API request: $queryURL")
         val restaurantRequest = StringRequest(Request.Method.GET,
                 queryURL,
             { response ->
@@ -241,7 +247,7 @@ class MainActivity : AppCompatActivity() {
                         isDataReady = true
                         searchBTN.isEnabled = true
                         //let user know to that they can start searching restaurants
-                        launchTextFragment( "Press search to find a restaurant")
+                        launchTextFragment(resources.getString(R.string.pressToSearch))
 
                     }
                 }catch (exception: JSONException){
@@ -278,7 +284,7 @@ class MainActivity : AppCompatActivity() {
                         isDataReady = true
                         searchBTN.isEnabled = true
                         //let user know to that they can start searching restaurants
-                        launchTextFragment( "Press search to find a restaurant")
+                        launchTextFragment(resources.getString(R.string.pressToSearch))
 
                     }
                 }catch (exception: JSONException){
@@ -297,7 +303,7 @@ class MainActivity : AppCompatActivity() {
         if(placeID== null){
             //should never get here, there should be a restaurant open if this function is called
         }else{
-            val queryURL:String = "https://maps.googleapis.com/maps/api/place/details/json?language=$LANGUAGE_TAG&fields=$NAME_TAG,$ADDRESS_TAG,$URL_TAG,$PHOTO_TAG&place_id=$placeID&key=$apiKey"
+            val queryURL:String = "https://maps.googleapis.com/maps/api/place/details/json?language=$LANGUAGETAG&fields=$NAMETAG,$ADDRESSTAG,$URLTAG,$PHOTOTAG&place_id=$placeID&key=$apiKey"
             val nextPageRequest = StringRequest(Request.Method.GET,
                     queryURL,
                 { response ->
@@ -358,11 +364,11 @@ class MainActivity : AppCompatActivity() {
         val bundle = Bundle()
 
         //pass default values over if there are no values received from api response
-        bundle.putString(NAME_TAG, restaurantName.toString())
-        bundle.putDouble(RATING_TAG, restaurantRating?:0.0)
-        bundle.putString(ADDRESS_TAG, restaurantAddress.toString())
-        bundle.putString(URL_TAG, restaurantURL.toString())
-        bundle.putString(PHOTOREFERENCE_TAG, restaurantPhotoReference.toString())
+        bundle.putString(NAMETAG, restaurantName.toString())
+        bundle.putDouble(RATINGTAG, restaurantRating?:0.0)
+        bundle.putString(ADDRESSTAG, restaurantAddress.toString())
+        bundle.putString(URLTAG, restaurantURL.toString())
+        bundle.putString(PHOTOREFERENCETAG, restaurantPhotoReference.toString())
         val restaurantFragment = RestaurantFragment()
         restaurantFragment.arguments = bundle
 
@@ -373,9 +379,64 @@ class MainActivity : AppCompatActivity() {
     private fun launchTextFragment(message: String){
         val textFrag = TextFragment()
         val bundle = Bundle()
-        bundle.putString(STATUSMESSAGE_TAG, message)
+        bundle.putString(STATUSMESSAGETAG, message)
         textFrag.arguments = bundle
         supportFragmentManager.beginTransaction().add(R.id.MainActivity_restaurantFragmentContainer, textFrag).commit()
+
+    }
+
+    private fun isGPSOn():Boolean{
+        val manager:LocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        if ( !manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            showGPSRequestDialog();
+            return false
+        }else{
+            return true
+        }
+    }
+    private fun isWifiOn():Boolean{
+        val connectivityManager = this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val network = connectivityManager.activeNetwork ?: return false
+        val activeNetwork = connectivityManager.getNetworkCapabilities(network) ?: return false
+
+        return when {
+            // Wifi connection
+            activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+
+            // Cellar connection
+            activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+
+            // else return false
+            else -> {
+                false
+            }
+        }
+    }
+
+
+
+    private fun showGPSRequestDialog(){
+        val dialogBuilder:AlertDialog.Builder =  AlertDialog.Builder(this)
+        dialogBuilder.setTitle(resources.getString(R.string.GPSRequestDialogTitle))
+        dialogBuilder.setMessage(resources.getString(R.string.GPSRequestDialogMessage))
+
+        dialogBuilder.create().show();
+    }
+
+    private fun showInternetConnectionRequestDialog(){
+        val dialogBuilder:AlertDialog.Builder =  AlertDialog.Builder(this)
+        dialogBuilder.setTitle(resources.getString(R.string.InternetConnectionRequestDialogTitle))
+        dialogBuilder.setMessage(resources.getString(R.string.InternetConnectionRequestDialogMessage))
+        dialogBuilder.setCancelable(false)
+        dialogBuilder.create().show();
+    }
+
+    private fun showPermissionExplanationDialog(){
+        val dialogBuilder:AlertDialog.Builder =  AlertDialog.Builder(this)
+        dialogBuilder.setTitle(resources.getString(R.string.PermisisonExplanationDialogTitle))
+        dialogBuilder.setMessage(resources.getString(R.string.PermisisonExplanationDialogMessage))
+        dialogBuilder.setCancelable(false)
+        dialogBuilder.create().show();
 
     }
 

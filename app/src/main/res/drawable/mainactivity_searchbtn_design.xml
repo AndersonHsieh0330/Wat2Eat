@@ -3,7 +3,7 @@
 
     <item android:state_enabled="false" >
         <shape android:shape="rectangle"  >
-            <solid android:color="@color/color1"/>
+            <solid android:color="?attr/searchBTNColor"/>
             <corners android:radius="10dp" />
             <stroke android:width="2dp" android:color="@color/black" />
         </shape>
@@ -13,7 +13,7 @@
     <!-- pressed/idle state. -->
     <item android:state_pressed="true" >
         <shape android:shape="rectangle"  >
-            <solid android:color="@color/color2"/>
+            <solid android:color="?attr/searchBTNColor_Pressed"/>
             <corners android:radius="5dp" />
             <stroke android:width="2dp" android:color="@color/black" />
         </shape>
@@ -22,7 +22,7 @@
 
     <item android:state_pressed="false">
         <shape android:shape="rectangle"  >
-            <solid android:color="@color/color1"/>
+            <solid android:color="?attr/searchBTNColor"/>
             <corners android:radius="10dp" />
             <stroke android:width="2dp" android:color="@color/black" />
         </shape>

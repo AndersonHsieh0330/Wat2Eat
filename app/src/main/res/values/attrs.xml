@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="secondaryTextColor" format="reference"/>
+    <attr name = "searchTextColor" format="reference"/>
+    <attr name = "searchBTNColor" format="reference"/>
+    <attr name="searchBTNColor_Pressed" format="reference"/>
+    <attr name = "restaurantTextContainerColor" format="reference"/>
+    <attr name = "restaurantInfoTextColor" format="reference"/>
+    <attr name = "restaurantImageBGColor" format="reference"/>
+    <attr name = "outlineColor" format="reference"/>
+
+</resources>

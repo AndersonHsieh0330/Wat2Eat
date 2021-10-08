@@ -14,12 +14,12 @@
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp"
         app:strokeColor="@color/black"
-        app:strokeWidth="2dp">
+        app:strokeWidth="2dp"
+        android:backgroundTint="@color/color6">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/RestaurantFragment_contextContainer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:backgroundTint="@color/color6">
+            android:layout_height="match_parent">
         <ImageView
             android:id="@+id/RestaurantFragment_image"
             android:layout_width="match_parent"

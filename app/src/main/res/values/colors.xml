@@ -23,4 +23,7 @@
     <color name="color10">#c37647</color>
     <color name="color11">#8b7d78</color>
 
+    //mutual
+    <color name="textGrey">#999999</color>
+
 </resources>
