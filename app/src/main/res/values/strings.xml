@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Wat2Eat</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="searchBTNText">Search</string>
     <string name="preparingRestaurantData">Fetching Data</string>
     <string name="outOfRestaurants">No more restaurants results</string>
@@ -13,5 +12,7 @@
     <string name="InternetConnectionRequestDialogTitle">Internet Connection Required</string>
     <string name="InternetConnectionRequestDialogMessage">Please connect to the Ineternet to continue</string>
     <string name="locationRequestFailed">Location Request Failed</string>
+    <string name="infoDialogTitle">Some Things to Note</string>
+    <string name="infoDialogMessage">1. The radius of searching diatance is 500m<br/>2.Wat2Eat fetch your location when app is first started, if you change location, please restart the app.</string>
 
 </resources>

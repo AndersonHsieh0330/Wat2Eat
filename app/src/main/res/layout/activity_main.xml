@@ -18,7 +18,8 @@
         android:drawableEnd="@drawable/ic_search"
         android:paddingLeft="100dp"
         android:paddingRight="100dp"
-        android:text="Search"
+        android:text="@string/searchBTNText"
+        android:textAllCaps="false"
         android:textColor="?attr/searchTextColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,6 +55,7 @@
             android:layout_height="match_parent">
 
             <ImageButton
+                android:id="@+id/MainActivity_infoBTN"
                 android:layout_width="wrap_content"
                 android:layout_height="?android:actionBarSize"
                 android:src="@drawable/ic_help"
@@ -62,6 +64,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
+                android:id="@+id/MainActivity_creditsBTN"
                 android:layout_width="wrap_content"
                 android:layout_height="?android:actionBarSize"
                 android:src="@drawable/ic_bookmark"
@@ -81,13 +84,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/MainActivity_toolBar"
-                android:layout_width="match_parent"
-                android:layout_height="?android:actionBarSize"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.appbar.AppBarLayout>
 

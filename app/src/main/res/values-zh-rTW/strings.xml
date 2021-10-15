@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Wat2Eat</string>
+    <string name="app_name">今天吃什麼？</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="searchBTNText">Search</string>
-    <string name="preparingRestaurantData">Fetching Data</string>
-    <string name="outOfRestaurants">No more restaurants results</string>
-    <string name="pressToSearch">Plesae press search to find a restaurant</string>
-    <string name="PermisisonExplanationDialogTitle">Permission Required</string>
-    <string name="PermisisonExplanationDialogMessage">Please turn on </string>
-    <string name="GPSRequestDialogTitle">Location Service Required</string>
-    <string name="GPSRequestDialogMessage">Please turn on location service to continue</string>
-    <string name="InternetConnectionRequestDialogTitle">Internet Connection Required</string>
-    <string name="InternetConnectionRequestDialogMessage">Please connect to the Ineternet to continue</string>
-    <string name="locationRequestFailed">Location Request Failed</string>
+    <string name="searchBTNText">搜尋</string>
+    <string name="preparingRestaurantData">取得資料中</string>
+    <string name="outOfRestaurants">沒有營業中的餐廳了 :(</string>
+    <string name="pressToSearch">請按下搜尋按鈕開始找餐廳</string>
+    <string name="PermisisonExplanationDialogTitle">給我權限麻～霸拖</string>
+    <string name="PermisisonExplanationDialogMessage">打開位置權限才能繼續呦</string>
+    <string name="GPSRequestDialogTitle">要記得打開位置服務呦</string>
+    <string name="GPSRequestDialogMessage">位置服務也要打開才能繼續</string>
+    <string name="InternetConnectionRequestDialogTitle">記得要連上網路哦</string>
+    <string name="InternetConnectionRequestDialogMessage">要連上網路才能幫你找附近的餐廳～</string>
+    <string name="locationRequestFailed">抱歉，找不到位置資訊</string>
+    <string name="infoDialogTitle">貼心提醒</string>
+    <string name="infoDialogMessage">1. 尋找半徑是500m<br/>2.今天吃什麼 在程式起動的時候獲取你附近的餐廳資訊，如果你換位置的話要記得重開App呦</string>
 
 
 </resources>

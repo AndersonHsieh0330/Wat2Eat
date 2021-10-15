@@ -46,7 +46,7 @@ class RestaurantFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.d("EEEEE", "onViewCreated: called")
-        val preferences = this.context?.getSharedPreferences("Wat2Eat_Pref", Context.MODE_PRIVATE)
+        val preferences = this.context?.getSharedPreferences("Wat2Eat_Pref", android.content.Context.MODE_PRIVATE)
 
         val photoReference = arguments?.getString(PHOTOREFERENCE_TAG).toString()
 

@@ -16,11 +16,12 @@
         <item name="secondaryTextColor">@color/textGrey</item>
         <item name="searchTextColor">@color/black</item>
         <item name="searchBTNColor">@color/color11</item>
-        <item name="searchBTNColor_Pressed">@color/color10</item>
+        <item name="searchBTNColor_Pressed">@color/color11</item>
         <item name="restaurantTextContainerColor">@color/color9</item>
         <item name="restaurantInfoTextColor">@color/white</item>
         <item name="restaurantImageBGColor">@color/color8</item>
         <item name = "outlineColor">@color/black</item>
+        <item name="statusBarColor">@color/black</item>
 
     </style>
 </resources>

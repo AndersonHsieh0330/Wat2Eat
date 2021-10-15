@@ -1,9 +1,11 @@
 package com.andyh.wat2eat
 
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
+import android.media.Image
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
@@ -11,6 +13,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -35,6 +38,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var searchBTN:Button
+    private lateinit var creditsBTN:ImageButton
+    private lateinit var infoBTN:ImageButton
     private val FINELOCATIONRQ = 101;
     private lateinit var queue:RequestQueue;
     private val apiKey = "AIzaSyDk0zxRUPq73N7hQ8nw7VhEgGcMdKRCpws"
@@ -163,6 +168,21 @@ class MainActivity : AppCompatActivity() {
         //use view binding to bind view elements
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         searchBTN = binding.MainActivitySearchBTN
+        infoBTN = binding.MainActivityInfoBTN
+        creditsBTN = binding.MainActivityCreditsBTN
+
+        creditsBTN.setOnClickListener{
+            val intent: Intent = Intent(this, CreditsPage::class.java)
+            startActivity(intent)
+        }
+
+        infoBTN.setOnClickListener {
+            val dialogBuilder:AlertDialog.Builder =  AlertDialog.Builder(this)
+            dialogBuilder.setTitle(resources.getString(R.string.infoDialogTitle))
+            dialogBuilder.setMessage(resources.getString(R.string.infoDialogMessage))
+
+            dialogBuilder.create().show();
+        }
 
         //set listeners to buttons
         searchBTN.setOnClickListener {

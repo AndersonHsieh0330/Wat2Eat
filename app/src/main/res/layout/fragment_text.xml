@@ -14,7 +14,7 @@
     app:cardElevation="0dp"
     app:strokeWidth="2dp"
     app:strokeColor="@color/black"
-    android:backgroundTint="@color/color3">
+    android:backgroundTint="?attr/restaurantTextContainerColor">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

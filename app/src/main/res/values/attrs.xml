@@ -8,5 +8,6 @@
     <attr name = "restaurantInfoTextColor" format="reference"/>
     <attr name = "restaurantImageBGColor" format="reference"/>
     <attr name = "outlineColor" format="reference"/>
+    <attr name = "statusBarColor" format="reference"/>
 
 </resources>
