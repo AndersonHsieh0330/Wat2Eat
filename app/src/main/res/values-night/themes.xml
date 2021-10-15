@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.Wat2Eat" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/color9</item>
+        <item name="colorPrimaryVariant">@color/color9</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -16,7 +16,7 @@
         <item name="secondaryTextColor">@color/textGrey</item>
         <item name="searchTextColor">@color/black</item>
         <item name="searchBTNColor">@color/color11</item>
-        <item name="searchBTNColor_Pressed">@color/color11</item>
+        <item name="searchBTNColor_Pressed">@color/color5</item>
         <item name="restaurantTextContainerColor">@color/color9</item>
         <item name="restaurantInfoTextColor">@color/white</item>
         <item name="restaurantImageBGColor">@color/color8</item>

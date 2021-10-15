@@ -30,7 +30,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.45"
-            android:text="press search"
+            android:text="@string/preparingRestaurantData"
             android:gravity="center" />
 
         <ProgressBar

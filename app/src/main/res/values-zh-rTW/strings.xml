@@ -14,7 +14,7 @@
     <string name="InternetConnectionRequestDialogMessage">要連上網路才能幫你找附近的餐廳～</string>
     <string name="locationRequestFailed">抱歉，找不到位置資訊</string>
     <string name="infoDialogTitle">貼心提醒</string>
-    <string name="infoDialogMessage">1. 尋找半徑是500m<br/>2.今天吃什麼 在程式起動的時候獲取你附近的餐廳資訊，如果你換位置的話要記得重開App呦</string>
+    <string name="infoDialogMessage"><br>1. 尋找半徑是500m\n2.今天吃什麼 在程式起動的時候獲取你附近的餐廳資訊，如果你換位置的話要記得重開App呦</br></string>
 
 
 </resources>
