@@ -18,6 +18,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.text.HtmlCompat
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
@@ -44,20 +45,16 @@ class MainActivity : AppCompatActivity() {
     private val apiKey = "AIzaSyDk0zxRUPq73N7hQ8nw7VhEgGcMdKRCpws"
     private lateinit var vibrator:Vibrator
 
-
-    //initial statue of location request
-    //"getLocation()" function may receive two geocode responses, but we only want to make one API request
-    //thus this boolean is used to prevent mutiple requests at a time
-
-    private var hasMadeRestaurantRequest = false
     //parameter tags for API calls
     private val LANGUAGETAG = Locale.getDefault().toLanguageTag()
     private val ADDRESSTAG = "formatted_address"
     private val NAMETAG = "name"
     private val URLTAG = "url"
     private val RATINGTAG = "rating"
-    private val PHOTOTAG = "photo"
+    private val PHOTOTAG = "photos"
     private val PHOTOREFERENCETAG = "photo_reference"
+    private val RESULTTAG = "result"
+    private val ATTRIBUTETAG= "html_attributions"
 
     //bundle tags
     val STATUSMESSAGETAG = "statueMessage"
@@ -125,10 +122,6 @@ class MainActivity : AppCompatActivity() {
                         getLocation()
                         Toast.makeText(applicationContext,"$name permission granted", Toast.LENGTH_SHORT).show()
                     }
-                }
-                if(isGPSOn()&&isWifiOn()){
-                    getLocation()
-                    Toast.makeText(applicationContext,"$name permission granted", Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -236,12 +229,8 @@ class MainActivity : AppCompatActivity() {
             locationTask.addOnCompleteListener { p0 ->
                 if(p0.isSuccessful){
                     Log.d("MainActivity","long: ${p0.result.latitude} and lad: ${p0.result.longitude}")
-                    if(hasMadeRestaurantRequest!=true) {
                         makeRestaurantRequest(p0.result.latitude, p0.result.longitude)
-                        hasMadeRestaurantRequest = true
-                    }else{
-                        Log.d("MainActivity", "getLocation: duplicate geocode reponse")
-                    }
+
                 }else{
                     //request failed, GPS might be off
                     Toast.makeText(this,R.string.locationRequestFailed, Toast.LENGTH_SHORT).show()
@@ -295,6 +284,7 @@ class MainActivity : AppCompatActivity() {
                 val dialogBuilder:AlertDialog.Builder =  AlertDialog.Builder(this)
                 dialogBuilder.setTitle(resources.getString(R.string.restaurantRequestFailed_title))
                 dialogBuilder.setMessage(resources.getString(R.string.restaurantRequestFailed_message))
+                dialogBuilder.setCancelable(false)
 
                 dialogBuilder.create().show();})
 
@@ -303,7 +293,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun makeNextPageRequest(nextPageToken: String){
         val queryURL:String = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=$nextPageToken&key=$apiKey"
-        Log.d("PPPPP", "url: $queryURL")
+        Log.d("MainActivity", "NextPage Request Url: $queryURL")
 
         val nextPageRequest = StringRequest(Request.Method.GET,
             queryURL,
@@ -352,27 +342,31 @@ class MainActivity : AppCompatActivity() {
             //should never get here, there should be a restaurant open if this function is called
         }else{
             val queryURL:String = "https://maps.googleapis.com/maps/api/place/details/json?language=$LANGUAGETAG&fields=$NAMETAG,$ADDRESSTAG,$URLTAG,$PHOTOTAG&place_id=$placeID&key=$apiKey"
+            Log.d("MainActivity", "Place Detail Request Url: $queryURL ")
             val nextPageRequest = StringRequest(Request.Method.GET,
                     queryURL,
                 { response ->
                     try {
                         val jsonObject = JSONObject(response)
-                        val placeDetail = jsonObject.getJSONObject("result")
-                        Log.d("PPPPPP", "getPlaceDetail: $placeDetail")
-                        val restaurantAddress = placeDetail.getString("formatted_address")
-                        val restaurantName = placeDetail.getString("name")
-                        val restaurantURL = placeDetail.getString("url")
-                        val restaurantPhotoArray = placeDetail.getJSONArray("photos")
+                        val placeDetail = jsonObject.getJSONObject(RESULTTAG)
+                        val restaurantAddress = placeDetail.getString(ADDRESSTAG)
+                        val restaurantName = placeDetail.getString(NAMETAG)
+                        val restaurantURL = placeDetail.getString(URLTAG)
+                        val restaurantPhotoArray = placeDetail.getJSONArray(PHOTOTAG)
 
                         //pick random photo out of all the photo returned
-                        val restaurantPhotoReference = restaurantPhotoArray.getJSONObject(((0 until restaurantPhotoArray.length()).random())).getString("photo_reference")
+                        val selectedPhoto = restaurantPhotoArray.getJSONObject(((0 until restaurantPhotoArray.length()).random()))
+                        val restaurantPhotoReference = selectedPhoto.getString(PHOTOREFERENCETAG)
 
-                        sendDataToDisplay(restaurantName,restaurantRating,restaurantAddress,restaurantURL,restaurantPhotoReference)
+                        //attribution is the string "null" when there's nothing required
+
+                        val restaurantPhotoAttribute = selectedPhoto.getJSONArray(ATTRIBUTETAG)[0].toString()
+                        sendDataToDisplay(restaurantName,restaurantRating,restaurantAddress,restaurantURL,restaurantPhotoReference, restaurantPhotoAttribute)
 
                         Log.d("MainActivity","Place detail response: \naddress: $restaurantAddress\nname: $restaurantName\nRating: $rating\nURL: $restaurantURL\nPhoto_reference: $restaurantPhotoReference")
 
                     }catch (exception:JSONException){
-                        Log.d("MainActivity", "place detail response failed")
+                        Log.d("MainActivity", "place detail response failed: ${exception.message}")
                     }
 
                 },
@@ -408,7 +402,7 @@ class MainActivity : AppCompatActivity() {
         return null
     }
 
-    fun sendDataToDisplay(restaurantName:String,restaurantRating:Double?,restaurantAddress:String,restaurantURL:String,restaurantPhotoReference:String){
+    private fun sendDataToDisplay(restaurantName:String, restaurantRating:Double?, restaurantAddress:String, restaurantURL:String, restaurantPhotoReference:String, restaurantPhotoAttribute:String){
         val bundle = Bundle()
 
         //pass default values over if there are no values received from api response
@@ -417,6 +411,7 @@ class MainActivity : AppCompatActivity() {
         bundle.putString(ADDRESSTAG, restaurantAddress)
         bundle.putString(URLTAG, restaurantURL)
         bundle.putString(PHOTOREFERENCETAG, restaurantPhotoReference)
+        bundle.putString(ATTRIBUTETAG,restaurantPhotoAttribute)
 
         val restaurantFragment = RestaurantFragment()
         restaurantFragment.arguments = bundle

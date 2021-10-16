@@ -28,6 +28,24 @@
             app:layout_constraintBottom_toTopOf="@id/RestaurantFragment_textContainer"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/RestaurantFragment_photoAttribute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:textColorLink="@color/white"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toTopOf="@id/RestaurantFragment_powerByGoogle"
+                app:layout_constraintEnd_toEndOf="@id/RestaurantFragment_powerByGoogle" />
+            <ImageView
+                android:id="@+id/RestaurantFragment_powerByGoogle"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/powered_by_google_on_white"
+                app:layout_constraintBottom_toBottomOf="@+id/RestaurantFragment_image"
+                app:layout_constraintEnd_toEndOf="parent" />
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/RestaurantFragment_textContainer"
             android:layout_width="match_parent"
@@ -87,14 +105,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="20dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginBottom="20dp"
-                android:src="@drawable/powered_by_google_on_white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

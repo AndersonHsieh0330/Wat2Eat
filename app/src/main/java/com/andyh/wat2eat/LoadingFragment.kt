@@ -31,8 +31,6 @@ class LoadingFragment : Fragment() {
     private fun initElement(){
         messageText = binding.LoadingFragmentMessageText
         taskProgressBar = binding.LoadingFragmentProgressBar
-
-        messageText.setText("Fetching data")
     }
 
 }

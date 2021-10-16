@@ -26,16 +26,20 @@ class RestaurantFragment : Fragment(){
     private lateinit var restaurantRating: RatingBar;
     private lateinit var restaurantAddress: TextView;
     private lateinit var restaurantURL: TextView;
+    private lateinit var restaurantPhotoAttribute: TextView
     private lateinit var restaurantImage: ImageView;
 
+
     //TAGs for API calls
-    val LANGUAGE_TAG = Locale.getDefault().toLanguageTag()
-    val ADDRESS_TAG = "formatted_address"
-    val NAME_TAG = "name"
-    val URL_TAG = "url"
-    val RATING_TAG = "rating"
-    val PHOTO_TAG = "photo"
-    val PHOTOREFERENCE_TAG = "photo_reference"
+    private val LANGUAGE_TAG = Locale.getDefault().toLanguageTag()
+    private val ADDRESS_TAG = "formatted_address"
+    private val NAME_TAG = "name"
+    private val URL_TAG = "url"
+    private val RATING_TAG = "rating"
+    private val PHOTOTAG = "photos"
+    private val PHOTOREFERENCE_TAG = "photo_reference"
+    private val ATTRIBUTETAG= "html_attributions"
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -61,7 +65,7 @@ class RestaurantFragment : Fragment(){
                     override fun onGlobalLayout() {
                         val width = restaurantImage.width
                         preferences?.edit()?.putInt("restaurantImageWidth", width)?.apply()
-                        Log.d("EEEEE", "onViewCreated22: $width + ${preferences.toString()}")
+                        Log.d("RestaurantFragment", "onViewCreated22: $width + ${preferences.toString()}")
 
                         if(preferences?.contains("restaurantImageWidth")== true){
                             vto.removeOnGlobalLayoutListener(this)
@@ -101,6 +105,7 @@ class RestaurantFragment : Fragment(){
         restaurantAddress = binding.RestaurantFragmentAddress
         restaurantURL = binding.RestaurantFragmentURL
         restaurantImage = binding.RestaurantFragmentImage
+        restaurantPhotoAttribute = binding.RestaurantFragmentPhotoAttribute
 
         restaurantURL.text = HtmlCompat.fromHtml("<a href=\"${arguments?.getString(URL_TAG).toString()}\">${resources.getString(R.string.openWithGoogleMap)}</a>",HtmlCompat.FROM_HTML_MODE_LEGACY)
         restaurantURL.movementMethod= LinkMovementMethod.getInstance()
@@ -108,6 +113,14 @@ class RestaurantFragment : Fragment(){
         restaurantRating.rating = arguments?.getDouble(RATING_TAG)?.toFloat() ?: 0.0f
         restaurantAddress.text = arguments?.getString(ADDRESS_TAG).toString()
 
+        //display nothing if no attribution to the photo is required
+        val photoAttribution  = arguments?.getString(ATTRIBUTETAG)
+        if(photoAttribution != "null"){
+            restaurantPhotoAttribute.text = HtmlCompat.fromHtml(photoAttribution.toString(),HtmlCompat.FROM_HTML_MODE_LEGACY)
+            restaurantPhotoAttribute.movementMethod= LinkMovementMethod.getInstance()
+        }else{
+            restaurantPhotoAttribute.text = " "
+        }
     }
 
 }
