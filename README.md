@@ -85,7 +85,8 @@ The app does use third party services that may collect information used to ident
 
 Link to privacy policy of third party service providers used by the app
 
-*   [Google Play Services](https://www.google.com/policies/privacy/)
+*   [Google Play Services](https://policies.google.com/terms)
+*   [Google Maps Platform](https://cloud.google.com/maps-platform/terms?_ga=2.112157575.284615303.1634367579-641403438.1626850310)
 
 **Log Data**
 
