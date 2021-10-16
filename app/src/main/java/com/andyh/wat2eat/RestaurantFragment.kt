@@ -5,11 +5,15 @@ import android.content.SharedPreferences
 import android.graphics.Point
 import android.os.Build
 import android.os.Bundle
+import android.text.Html
+import android.text.method.LinkMovementMethod
+import android.text.method.MovementMethod
 import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
+import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
 import com.andyh.wat2eat.databinding.FragmentRestaurantBinding
 import com.bumptech.glide.Glide
@@ -49,7 +53,6 @@ class RestaurantFragment : Fragment(){
         val preferences = this.context?.getSharedPreferences("Wat2Eat_Pref", android.content.Context.MODE_PRIVATE)
 
         val photoReference = arguments?.getString(PHOTOREFERENCE_TAG).toString()
-
         if(preferences?.contains("restaurantImageWidth")!=true){
             try{
                 //get the size of the screen
@@ -99,10 +102,11 @@ class RestaurantFragment : Fragment(){
         restaurantURL = binding.RestaurantFragmentURL
         restaurantImage = binding.RestaurantFragmentImage
 
+        restaurantURL.text = HtmlCompat.fromHtml("<a href=\"${arguments?.getString(URL_TAG).toString()}\">${resources.getString(R.string.openWithGoogleMap)}</a>",HtmlCompat.FROM_HTML_MODE_LEGACY)
+        restaurantURL.movementMethod= LinkMovementMethod.getInstance()
         restaurantName.text = arguments?.getString(NAME_TAG).toString()
         restaurantRating.rating = arguments?.getDouble(RATING_TAG)?.toFloat() ?: 0.0f
         restaurantAddress.text = arguments?.getString(ADDRESS_TAG).toString()
-        restaurantURL.text = arguments?.getString(URL_TAG).toString()
 
     }
 

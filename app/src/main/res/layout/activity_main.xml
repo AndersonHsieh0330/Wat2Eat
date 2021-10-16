@@ -46,7 +46,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/MainActivity_appBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?android:actionBarSize"
         app:layout_constraintTop_toTopOf="parent"
         android:background="@color/white">
 
@@ -73,15 +73,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="?android:actionBarSize"
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:gravity="center"
-                android:text="Wat2Eat"
+                android:src="@drawable/in_app_logo"
                 android:textSize="30sp"
+                android:layout_marginVertical="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/MainActivity_infoBTN"
+                app:layout_constraintStart_toEndOf="@id/MainActivity_creditsBTN"
                 app:layout_constraintTop_toTopOf="parent" />
 
 

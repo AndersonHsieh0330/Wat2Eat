@@ -7,6 +7,7 @@
     tools:context=".CreditsPage">
 
     <ImageButton
+        android:id="@+id/CreditsPage_closeBTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
@@ -15,5 +16,133 @@
         android:layout_marginStart="20dp"
         android:src="@drawable/ic_close"
         android:backgroundTint="#00FFFFFF"/>
+
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/aboutPage"
+        android:textSize="30sp"
+        android:gravity="bottom"
+        android:layout_marginHorizontal="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/CreditsPage_closeBTN"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/CreditsPage_closeBTN"
+        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/CreditsPage_descriptionContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CreditsPage_closeBTN"
+        app:layout_constraintBottom_toTopOf="@id/CreditsPage_resourcesUsed">
+
+        <TextView
+            android:id="@+id/CreditPage_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/aboutPageDescription"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+
+        <ImageButton
+            android:id="@+id/CreditsPage_GithubLink"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/github_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/CreditsPage_LinkedInLink"
+            app:layout_constraintEnd_toStartOf="@+id/CreditsPage_InstagramLink" />
+
+        <ImageButton
+            android:id="@+id/CreditsPage_InstagramLink"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/instagram_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/CreditsPage_LinkedInLink"
+            app:layout_constraintEnd_toStartOf="@+id/CreditsPage_LinkedInLink" />
+
+        <ImageButton
+            android:id="@+id/CreditsPage_LinkedInLink"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="70dp"
+            android:background="@drawable/linkedin_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CreditPage_description" />
+
+        <TextView
+            android:id="@+id/CreditsPage_madeWithLove"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="right"
+            android:text="@string/madeWithLove"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CreditsPage_LinkedInLink" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <TextView
+        android:id="@+id/CreditsPage_resourcesUsed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/resourcesUsed"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@id/CreditsPage_attributesTable"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginHorizontal="20dp"/>
+
+    <TableLayout
+        android:id="@+id/CreditsPage_attributesTable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="20dp">
+
+
+        <Button
+            android:id="@+id/CreditsPage_GlideLisenceBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp"/>
+
+        <Button
+            android:id="@+id/CreditsPage_googlePlacesAPILisenceBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp"/>
+
+
+        <Button
+            android:id="@+id/CreditsPage_licenseDialogLicenseBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp"/>
+
+    </TableLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

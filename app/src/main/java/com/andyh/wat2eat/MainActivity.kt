@@ -5,12 +5,12 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
-import android.media.Image
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
@@ -31,7 +31,6 @@ import com.google.android.gms.tasks.Task
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
-import java.net.URL
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -43,7 +42,14 @@ class MainActivity : AppCompatActivity() {
     private val FINELOCATIONRQ = 101;
     private lateinit var queue:RequestQueue;
     private val apiKey = "AIzaSyDk0zxRUPq73N7hQ8nw7VhEgGcMdKRCpws"
+    private lateinit var vibrator:Vibrator
 
+
+    //initial statue of location request
+    //"getLocation()" function may receive two geocode responses, but we only want to make one API request
+    //thus this boolean is used to prevent mutiple requests at a time
+
+    private var hasMadeRestaurantRequest = false
     //parameter tags for API calls
     private val LANGUAGETAG = Locale.getDefault().toLanguageTag()
     private val ADDRESSTAG = "formatted_address"
@@ -165,6 +171,8 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun initElements(){
+        //note vibrator requires a permission in Manifest
+        vibrator=getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         //use view binding to bind view elements
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         searchBTN = binding.MainActivitySearchBTN
@@ -172,28 +180,35 @@ class MainActivity : AppCompatActivity() {
         creditsBTN = binding.MainActivityCreditsBTN
 
         creditsBTN.setOnClickListener{
-            val intent: Intent = Intent(this, CreditsPage::class.java)
-            startActivity(intent)
+            if(isDataReady) {
+                val intent: Intent = Intent(this, CreditsPage::class.java)
+                startActivity(intent)
+            }
         }
 
         infoBTN.setOnClickListener {
-            val dialogBuilder:AlertDialog.Builder =  AlertDialog.Builder(this)
-            dialogBuilder.setTitle(resources.getString(R.string.infoDialogTitle))
-            dialogBuilder.setMessage(resources.getString(R.string.infoDialogMessage))
+            if(isDataReady) {
+                val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this)
+                dialogBuilder.setTitle(resources.getString(R.string.infoDialogTitle))
+                dialogBuilder.setMessage(resources.getString(R.string.infoDialogMessage))
 
-            dialogBuilder.create().show();
+                dialogBuilder.create().show();
+            }
         }
 
         //set listeners to buttons
         searchBTN.setOnClickListener {
             if(isDataReady) {
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O){
+                    //only vibrate if user's devices api leve is >= 26
+                    vibrator.vibrate(VibrationEffect.createOneShot(100,VibrationEffect.DEFAULT_AMPLITUDE))
+                }
                 for(i in dataContainer.indices){
                     //for each page of the dataContainer
                     placeID = searchCurrentPage(dataContainer[i])
                     if(placeID!=null){
                         placesFoundPreviously.add(placeID.toString())
                         getPlaceDetail(placeID,restaurantRating)
-                        Log.d("MainActivity", "initElements: $i")
                         break
                     }
                 }
@@ -221,7 +236,12 @@ class MainActivity : AppCompatActivity() {
             locationTask.addOnCompleteListener { p0 ->
                 if(p0.isSuccessful){
                     Log.d("MainActivity","long: ${p0.result.latitude} and lad: ${p0.result.longitude}")
-                    makeRestaurantRequest(p0.result.latitude, p0.result.longitude)
+                    if(hasMadeRestaurantRequest!=true) {
+                        makeRestaurantRequest(p0.result.latitude, p0.result.longitude)
+                        hasMadeRestaurantRequest = true
+                    }else{
+                        Log.d("MainActivity", "getLocation: duplicate geocode reponse")
+                    }
                 }else{
                     //request failed, GPS might be off
                     Toast.makeText(this,R.string.locationRequestFailed, Toast.LENGTH_SHORT).show()
@@ -229,10 +249,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
-
-
-
     }
 
     private fun makeRestaurantRequest(latitude: Double, longitude: Double){
@@ -274,7 +290,13 @@ class MainActivity : AppCompatActivity() {
                     Log.d("MainActivity", "Got page $pageCount response, but failed to make request for page2. Error Message: ${exception.message}")
                 }
             },
-            { error -> Log.d("MainActivity", "Failed to get page $pageCount response  Error Message: ${error.message}")})
+            { error -> Log.d("MainActivity", "Failed to get page $pageCount response  Error Message: ${error.message}")
+                //let user know to try again later
+                val dialogBuilder:AlertDialog.Builder =  AlertDialog.Builder(this)
+                dialogBuilder.setTitle(resources.getString(R.string.restaurantRequestFailed_title))
+                dialogBuilder.setMessage(resources.getString(R.string.restaurantRequestFailed_message))
+
+                dialogBuilder.create().show();})
 
         queue.add(restaurantRequest)
     }
@@ -313,7 +335,13 @@ class MainActivity : AppCompatActivity() {
                 }
 
             },
-            { error -> Log.d("MainActivity", "Page $pageCount request failed ${error.toString()}")})
+            { error -> Log.d("MainActivity", "Page $pageCount request failed ${error.toString()}")
+                //failed to get next page, but still allow user to see the pages that are already fetched
+                isDataReady = true
+                searchBTN.isEnabled = true
+                //let user know to that they can start searching restaurants
+                launchTextFragment(resources.getString(R.string.pressToSearch))})
+
         queue.add(nextPageRequest);
 
     }
@@ -384,11 +412,12 @@ class MainActivity : AppCompatActivity() {
         val bundle = Bundle()
 
         //pass default values over if there are no values received from api response
-        bundle.putString(NAMETAG, restaurantName.toString())
+        bundle.putString(NAMETAG, restaurantName)
         bundle.putDouble(RATINGTAG, restaurantRating?:0.0)
-        bundle.putString(ADDRESSTAG, restaurantAddress.toString())
-        bundle.putString(URLTAG, restaurantURL.toString())
-        bundle.putString(PHOTOREFERENCETAG, restaurantPhotoReference.toString())
+        bundle.putString(ADDRESSTAG, restaurantAddress)
+        bundle.putString(URLTAG, restaurantURL)
+        bundle.putString(PHOTOREFERENCETAG, restaurantPhotoReference)
+
         val restaurantFragment = RestaurantFragment()
         restaurantFragment.arguments = bundle
 

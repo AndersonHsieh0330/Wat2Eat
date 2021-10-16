@@ -25,5 +25,6 @@
 
     //mutual
     <color name="textGrey">#999999</color>
+    <color name="starYellow">#ffde34</color>
 
 </resources>

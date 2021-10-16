@@ -59,7 +59,8 @@
                 app:layout_constraintTop_toBottomOf="@id/RestaurantFragment_restaurantName"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="5dp"
-                />
+                android:progressTint="@color/starYellow"
+                android:secondaryProgressTint="@color/starYellow"/>
 
             <TextView
                 android:id="@+id/RestaurantFragment_address"
@@ -73,17 +74,27 @@
 
             <TextView
                 android:id="@+id/RestaurantFragment_URL"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="20dp"
-                android:text="Open with Google"
+                android:text="@string/openWithGoogleMap"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/RestaurantFragment_address"
-                android:autoLink="web"/>
+                android:textColorLink="#03A9F4"/>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/powered_by_google_on_white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
