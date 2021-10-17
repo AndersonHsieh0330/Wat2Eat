@@ -43,6 +43,8 @@ Link to Terms and Conditions of third party service providers used by the app
 
 *   [Google Play Services](https://policies.google.com/terms)
 *   [Google Maps Platform](https://cloud.google.com/maps-platform/terms?_ga=2.112157575.284615303.1634367579-641403438.1626850310)
+*   [Volley](https://github.com/google/volley)
+*   [Glide](https://github.com/bumptech/glide)
 
 You should be aware that there are certain things that Hsieh Heng-An will not take responsibility for. Certain functions of the app will require the app to have an active internet connection. The connection can be Wi-Fi, or provided by your mobile network provider, but Hsieh Heng-An cannot take responsibility for the app not working at full functionality if you don’t have access to Wi-Fi, and you don’t have any of your data allowance left.
 
@@ -90,6 +92,8 @@ Link to privacy policy of third party service providers used by the app
 
 *   [Google Play Services](https://policies.google.com/terms)
 *   [Google Maps Platform](https://cloud.google.com/maps-platform/terms?_ga=2.112157575.284615303.1634367579-641403438.1626850310)
+*   [Volley](https://github.com/google/volley)
+*   [Glide](https://github.com/bumptech/glide)
 
 **Log Data**
 
