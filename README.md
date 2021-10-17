@@ -18,6 +18,7 @@ Some new things I’ve learned:
 - Presenting image links: Glide
 - How to attribute resources used in a app and software licenses
 - How to publish an app to Google Play Store
+- Activity BackStak
 
 Libraries and resources I used 
 - Volley
