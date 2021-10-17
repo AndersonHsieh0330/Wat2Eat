@@ -5,13 +5,14 @@
     <string name="preparingRestaurantData">Fetching Data</string>
     <string name="outOfRestaurants">No more restaurants results</string>
     <string name="pressToSearch">Plesae press search to find a restaurant</string>
-    <string name="PermisisonExplanationDialogTitle">Permission Required</string>
-    <string name="PermisisonExplanationDialogMessage">Please turn on </string>
+    <string name="PermissionExplanationDialogTitle">Permission Required</string>
+    <string name="PermissionExplanationDialogMessage">Please turn on </string>
     <string name="GPSRequestDialogTitle">Location Service Required</string>
     <string name="GPSRequestDialogMessage">Please turn on location service to continue</string>
     <string name="InternetConnectionRequestDialogTitle">Internet Connection Required</string>
     <string name="InternetConnectionRequestDialogMessage">Please connect to the Ineternet to continue</string>
-    <string name="locationRequestFailed">Location Request Failed</string>
+    <string name="locationRequestFailed_title">Location Request Failed</string>
+    <string name="locationRequestFailed_Message">Sorry, we were unable to fetch you location. Please check the device environment then try again later by restarting the App.</string>
     <string name="infoDialogTitle">Note</string>
     <string name="infoDialogMessage"><br>1. The radius of searching diatance is 500m\n2. Wat2Eat fetch your location when app is first started, if you change location, please restart the app.</br></string>
     <string name="aboutPage">About</string>
@@ -20,11 +21,20 @@
     <string name="InstagramLink">https://www.instagram.com/anderson_hsieh0330/</string>
     <string name="LinkedInLink">https://www.linkedin.com/in/anderson-hsieh-6003a41ba/</string>
     <string name="GitHubLink">https://github.com/AndersonHsieh0330/Wat2Eat</string>
-    <string name="resourcesUsed">Libraries and resources used:</string>
-    <string name="GlideLisence"><br>Glide <a href="https://github.com/bumptech/glide">Github</a>\n\nCopyright 2014 Google, Inc. All rights reserved.\n\nTHIS SOFTWARE IS PROVIDED BY GOOGLE, INC. ``AS IS\'\' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL GOOGLE, INC. OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</br></string>
+    <string name="resourcesUsed">Libraries, APIs and other resources used:</string>
+    <string name="GlideLicense"><br>Glide <a href="https://github.com/bumptech/glide">https://github.com/bumptech/glide</a>\n\nCopyright 2014 Google, Inc. All rights reserved.\n\nTHIS SOFTWARE IS PROVIDED BY GOOGLE, INC. ``AS IS\'\' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL GOOGLE, INC. OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</br></string>
     <string name="restaurantRequestFailed_title">Failed to request for restaurant</string>
     <string name="restaurantRequestFailed_message">Sorry, error occur while trying to find restaurants, please try again later by restarting the App.</string>
     <string name="openWithGoogleMap">See on Google Map</string>
+    <string name="resourceName_Volley">- Volley</string>
+    <string name="resourceName_Glide">- Glide</string>
+    <string name="resourceName_GooglePlacesAPI">- Google Places API</string>
+    <string name="resourceName_licenseDialog">- LicenseDialog</string>
+    <string name="version">Wat2Eat v1.0</string>
+    <string name="copyright">Copyright © 2021 Hsieh Heng-An. All rights reserved.</string>
+    <string name="usageReminder">This app contains the libraries/resources shown above. Including Volley, Glide, Google Places API. Downloading and using this app mean that you\'re aware and agree with the terms of use and other services restrictions that they are bounded under. Please see their license by clicking on the text of each resource above.</string>
+    <string name="termsNConditions">Terms &amp; Conditions</string>
+    <string name="privacyPolicy">Privacy Policy</string>
 
 
 </resources>

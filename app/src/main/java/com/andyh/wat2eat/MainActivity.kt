@@ -14,7 +14,6 @@ import android.os.Vibrator
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -116,17 +115,19 @@ class MainActivity : AppCompatActivity() {
             ContextCompat.checkSelfPermission(applicationContext,permission) == PackageManager.PERMISSION_GRANTED -> {
                 //User already approved location permission
                 when {
-                    !isGPSOn() -> showGPSRequestDialog()
-                    !isWifiOn() -> showInternetConnectionRequestDialog()
+                    !isGPSOn() -> //GPS required dialog
+                        displayTextDialog(R.string.GPSRequestDialogTitle,R.string.GPSRequestDialogMessage, false)
+                    !isWifiOn() -> //Internet required dialog
+                        displayTextDialog(R.string.InternetConnectionRequestDialogTitle,R.string.InternetConnectionRequestDialogMessage, false)
+
                     isGPSOn() && isWifiOn() ->{
                         getLocation()
-                        Toast.makeText(applicationContext,"$name permission granted", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
 
             shouldShowRequestPermissionRationale(permission) -> {
-                showPermissionExplanationDialog();
+                displayTextDialog(R.string.PermissionExplanationDialogTitle,R.string.PermissionExplanationDialogMessage, false)
 
             }
             else -> {
@@ -147,11 +148,11 @@ class MainActivity : AppCompatActivity() {
                 // If request is cancelled, the result arrays are empty.
                 if ((grantResults.isNotEmpty() &&
                                 grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                    // system permission request dialog is poped and granted the location permission
+                    // system permission request dialog is popped and granted the location permission
                     //execute getLocation() after user approve the location permission
                     getLocation()
                 } else {
-                    //system permission request dialog is poped and user selected to not allow the location permission
+                    //system permission request dialog is popped and user selected to not allow the location permission
                 }
                 return
             }
@@ -181,11 +182,8 @@ class MainActivity : AppCompatActivity() {
 
         infoBTN.setOnClickListener {
             if(isDataReady) {
-                val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this)
-                dialogBuilder.setTitle(resources.getString(R.string.infoDialogTitle))
-                dialogBuilder.setMessage(resources.getString(R.string.infoDialogMessage))
+                displayTextDialog(R.string.infoDialogTitle, R.string.infoDialogMessage,true)
 
-                dialogBuilder.create().show();
             }
         }
 
@@ -233,7 +231,7 @@ class MainActivity : AppCompatActivity() {
 
                 }else{
                     //request failed, GPS might be off
-                    Toast.makeText(this,R.string.locationRequestFailed, Toast.LENGTH_SHORT).show()
+                    displayTextDialog(R.string.restaurantRequestFailed_title, R.string.restaurantRequestFailed_message, false)
                     Log.d("MainActivity", "Get Location Failed ${p0.exception?.message}")
                 }
             }
@@ -281,12 +279,7 @@ class MainActivity : AppCompatActivity() {
             },
             { error -> Log.d("MainActivity", "Failed to get page $pageCount response  Error Message: ${error.message}")
                 //let user know to try again later
-                val dialogBuilder:AlertDialog.Builder =  AlertDialog.Builder(this)
-                dialogBuilder.setTitle(resources.getString(R.string.restaurantRequestFailed_title))
-                dialogBuilder.setMessage(resources.getString(R.string.restaurantRequestFailed_message))
-                dialogBuilder.setCancelable(false)
-
-                dialogBuilder.create().show();})
+                displayTextDialog(R.string.locationRequestFailed_title,R.string.locationRequestFailed_Message, false )})
 
         queue.add(restaurantRequest)
     }
@@ -432,7 +425,8 @@ class MainActivity : AppCompatActivity() {
     private fun isGPSOn():Boolean{
         val manager:LocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         if ( !manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            showGPSRequestDialog();
+            //GPS required dialog
+            displayTextDialog(R.string.GPSRequestDialogTitle,R.string.GPSRequestDialogMessage, false)
             return false
         }else{
             return true
@@ -458,35 +452,17 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
-    private fun showGPSRequestDialog(){
-        val dialogBuilder:AlertDialog.Builder =  AlertDialog.Builder(this)
-        dialogBuilder.setTitle(resources.getString(R.string.GPSRequestDialogTitle))
-        dialogBuilder.setMessage(resources.getString(R.string.GPSRequestDialogMessage))
-
-        dialogBuilder.create().show();
-    }
-
-    private fun showInternetConnectionRequestDialog(){
-        val dialogBuilder:AlertDialog.Builder =  AlertDialog.Builder(this)
-        dialogBuilder.setTitle(resources.getString(R.string.InternetConnectionRequestDialogTitle))
-        dialogBuilder.setMessage(resources.getString(R.string.InternetConnectionRequestDialogMessage))
-        dialogBuilder.setCancelable(false)
-        dialogBuilder.create().show();
-    }
-
-    private fun showPermissionExplanationDialog(){
-        val dialogBuilder:AlertDialog.Builder =  AlertDialog.Builder(this)
-        dialogBuilder.setTitle(resources.getString(R.string.PermisisonExplanationDialogTitle))
-        dialogBuilder.setMessage(resources.getString(R.string.PermisisonExplanationDialogMessage))
-        dialogBuilder.setCancelable(false)
-        dialogBuilder.create().show();
-
-    }
-
     override fun onStop() {
         super.onStop()
         //cancel the request when this activity is not visible
         CancellationTokenSource().cancel()
+    }
+
+    private fun displayTextDialog(title:Int, message:Int, cancelable:Boolean){
+        val dialogBuilder:AlertDialog.Builder =  AlertDialog.Builder(this)
+        dialogBuilder.setTitle(resources.getString(title))
+        dialogBuilder.setMessage(resources.getString(message))
+        dialogBuilder.setCancelable(cancelable)
+        dialogBuilder.create().show();
     }
 }

@@ -6,13 +6,14 @@
     <string name="preparingRestaurantData">取得資料中</string>
     <string name="outOfRestaurants">沒有營業中的餐廳了 :(</string>
     <string name="pressToSearch">請按下搜尋按鈕開始找餐廳</string>
-    <string name="PermisisonExplanationDialogTitle">給我權限麻～霸拖</string>
-    <string name="PermisisonExplanationDialogMessage">打開位置權限才能繼續呦</string>
+    <string name="PermissionExplanationDialogTitle">給我權限麻～霸拖</string>
+    <string name="PermissionExplanationDialogMessage">打開位置權限才能繼續呦</string>
     <string name="GPSRequestDialogTitle">要記得打開位置服務呦</string>
     <string name="GPSRequestDialogMessage">位置服務也要打開才能繼續</string>
     <string name="InternetConnectionRequestDialogTitle">記得要連上網路哦</string>
     <string name="InternetConnectionRequestDialogMessage">要連上網路才能幫你找附近的餐廳～</string>
-    <string name="locationRequestFailed">抱歉，找不到位置資訊</string>
+    <string name="locationRequestFailed_title">找不到位置資訊</string>
+    <string name="locationRequestFailed_Message">拍謝,出了點小意外.請檢察手機網路及位置環境後重開App</string>
     <string name="infoDialogTitle">貼心提醒 ♡</string>
     <string name="infoDialogMessage"><br>1. 尋找半徑是500m\n2. 程式會再起動時獲取你附近的餐廳資訊，如果你移動位置的話要記得重開App呦</br></string>
     <string name="aboutPage">關於Wat2Eat</string>
@@ -21,11 +22,19 @@
     <string name="InstagramLink">https://www.instagram.com/anderson_hsieh0330/</string>
     <string name="LinkedInLink">https://www.linkedin.com/in/anderson-hsieh-6003a41ba/</string>
     <string name="GitHubLink">https://github.com/AndersonHsieh0330/Wat2Eat</string>
-    <string name="resourcesUsed">使用的Libraries, API和資源</string>
-    <string name="GlideLisence"><br>Glide <a href="https://github.com/bumptech/glide">Github</a>\n\nCopyright 2014 Google, Inc. All rights reserved.\n\nTHIS SOFTWARE IS PROVIDED BY GOOGLE, INC. ``AS IS\'\' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL GOOGLE, INC. OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</br></string>
+    <string name="resourcesUsed">使用的Libraries, API和其他資源:</string>
+    <string name="GlideLicense"><br>Glide <a href='https://github.com/bumptech/glide'>https://github.com/bumptech/glide</a>\n\nCopyright 2014 Google, Inc. All rights reserved.\n\nTHIS SOFTWARE IS PROVIDED BY GOOGLE, INC. ``AS IS\'\' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL GOOGLE, INC. OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</br></string>
     <string name="restaurantRequestFailed_title">無法搜尋餐廳</string>
     <string name="restaurantRequestFailed_message">抱歉,出了點小意外,沒辦法幫你找到餐廳.請過一陣子再重新開啟App試試</string>
     <string name="openWithGoogleMap">在Google Map上打開</string>
-
+    <string name="resourceName_Volley">- Volley</string>
+    <string name="resourceName_Glide">- Glide</string>
+    <string name="resourceName_GooglePlacesAPI">- Google Places API</string>
+    <string name="resourceName_licenseDialog">- LicenseDialog</string>
+    <string name="version">今天吃甚麼 v1.0</string>
+    <string name="copyright">Copyright © 2021 Hsieh Heng-An. All rights reserved.</string>
+    <string name="usageReminder">This app contains the libraries/resources shown above. Including Volley, Glide, Google Places API. Downloading and using this app mean that you\'re aware and agree with the terms of use and other services restrictions that they are bounded under. Please see their license by clicking on the text of each resource above.</string>
+    <string name="termsNConditions">Terms &amp; Conditions</string>
+    <string name="privacyPolicy">Privacy Policy</string>
 
 </resources>

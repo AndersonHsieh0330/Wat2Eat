@@ -10,6 +10,8 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.marginEnd
+import androidx.core.view.setPadding
 import com.andyh.wat2eat.databinding.ActivityCreditsPageBinding
 import com.andyh.wat2eat.databinding.ActivityMainBinding
 import com.bumptech.glide.Glide
@@ -18,14 +20,17 @@ import de.psdev.licensesdialog.LicensesDialog
 import de.psdev.licensesdialog.licenses.ApacheSoftwareLicense20
 import de.psdev.licensesdialog.licenses.License
 import de.psdev.licensesdialog.model.Notice
+import org.w3c.dom.Text
 
 class CreditsPage : AppCompatActivity() {
 
     private lateinit var binding: ActivityCreditsPageBinding
     private lateinit var closeBTN: ImageButton
-    private lateinit var glideLicenseBTN:Button
-    private lateinit var googlePlacesAPILicenseBTN:Button
-    private lateinit var licenseDialogLicenseBTN:Button
+
+    private lateinit var volleyLicenseBTN:TextView
+    private lateinit var glideLicenseBTN:TextView
+    private lateinit var googlePlacesAPILicenseBTN:TextView
+    private lateinit var licenseDialogLicenseBTN:TextView
 
     private lateinit var gitHubLink:ImageButton
     private lateinit var instagramLink:ImageButton
@@ -40,9 +45,10 @@ class CreditsPage : AppCompatActivity() {
 
     private fun initElement(){
         closeBTN = binding.CreditsPageCloseBTN
-        glideLicenseBTN= binding.CreditsPageGlideLisenceBTN
-        googlePlacesAPILicenseBTN = binding.CreditsPageGooglePlacesAPILisenceBTN
-        licenseDialogLicenseBTN = binding.CreditsPageLicenseDialogLicenseBTN
+
+        volleyLicenseBTN = binding.CreditsPageVolleyLicenseBTN
+        glideLicenseBTN= binding.CreditsPageGlideLicenseBTN
+        googlePlacesAPILicenseBTN = binding.CreditsPageGooglePlacesAPILicenseBTN
 
         gitHubLink = binding.CreditsPageGithubLink
         instagramLink = binding.CreditsPageInstagramLink
@@ -61,39 +67,37 @@ class CreditsPage : AppCompatActivity() {
             finish()
         }
 
+        volleyLicenseBTN.setOnClickListener {
+            val name = "Volley";
+            val url = "https://github.com/google/volley/blob/master/LICENSE";
+            val copyright = "Copyright 2013 Philip Schiffer <admin@psdev.de>";
+            val license:License = ApacheSoftwareLicense20();
+            val notice: Notice  = Notice(name, url, copyright, license);
+            val builder = LicensesDialog.Builder(this)
+            builder.setNotices(notice)
+                .build()
+                .show();
+        }
         glideLicenseBTN.setOnClickListener {
+            val tv = TextView(this)
+            tv.movementMethod=LinkMovementMethod.getInstance()
+            tv.setText(R.string.GlideLicense)
+            tv.setPadding(20,20,20,0)
             val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-            builder.setTitle("Notice")
-            builder.setMessage(resources.getString(R.string.GlideLisence))
-            builder.setPositiveButton("CLOSE",null).show()
+            builder.setTitle(R.string.notices_title)
+            builder.setView(tv)
+            builder.setPositiveButton(R.string.notices_close,null).show()
 
         }
 
 
         googlePlacesAPILicenseBTN.setOnClickListener {
-            val name = "LicensesDialog";
-            val url = "http://psdev.de";
-            val copyright = "Copyright 2013 Philip Schiffer <admin@psdev.de>";
-            val license:License = ApacheSoftwareLicense20();
-            val notice: Notice  = Notice(name, url, copyright, license);
-            val builder = LicensesDialog.Builder(this)
-            builder.setNotices(notice)
-                .build()
-                .show();
+            val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+            builder.setTitle(R.string.notices_title)
+            builder.setMessage(resources.getString(R.string.GlideLicense))
+            builder.setPositiveButton(R.string.notices_close,null).show()
         }
-
-
-        licenseDialogLicenseBTN.setOnClickListener {
-            val name = "LicensesDialog";
-            val url = "http://psdev.de";
-            val copyright = "Copyright 2013 Philip Schiffer <admin@psdev.de>";
-            val license:License = ApacheSoftwareLicense20();
-            val notice: Notice  = Notice(name, url, copyright, license);
-            val builder = LicensesDialog.Builder(this)
-            builder.setNotices(notice)
-                .build()
-                .show();
-        }}
+    }
 
 
 

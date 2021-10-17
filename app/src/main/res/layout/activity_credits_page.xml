@@ -92,7 +92,7 @@
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/CreditsPage_LinkedInLink" />
+            app:layout_constraintTop_toBottomOf="@+id/CreditsPage_GithubLink" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -103,46 +103,124 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/resourcesUsed"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@id/CreditsPage_attributesTable"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginHorizontal="20dp"/>
 
-    <TableLayout
+    <LinearLayout
         android:id="@+id/CreditsPage_attributesTable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/CreditsPage_version"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="20dp">
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
 
-
-        <Button
-            android:id="@+id/CreditsPage_GlideLisenceBTN"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/CreditsPage_VolleyLicenseBTN"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:strokeColor="@color/black"
-            app:strokeWidth="2dp"/>
+            app:strokeWidth="2dp"
+            android:textSize="15sp"
+            android:textAllCaps="false"
+            android:layout_marginTop="10dp"
+            android:text="@string/resourceName_Volley"/>
 
-        <Button
-            android:id="@+id/CreditsPage_googlePlacesAPILisenceBTN"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/CreditsPage_GlideLicenseBTN"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:strokeColor="@color/black"
-            app:strokeWidth="2dp"/>
+            app:strokeWidth="2dp"
+            android:textSize="15sp"
+            android:textAllCaps="false"
+            android:layout_marginTop="10dp"
+            android:text="@string/resourceName_Glide"/>
 
-
-        <Button
-            android:id="@+id/CreditsPage_licenseDialogLicenseBTN"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/CreditsPage_googlePlacesAPILicenseBTN"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:strokeColor="@color/black"
-            app:strokeWidth="2dp"/>
+            app:strokeWidth="2dp"
+            android:textSize="15sp"
+            android:textAllCaps="false"
+            android:layout_marginTop="10dp"
+            android:text="@string/resourceName_GooglePlacesAPI"/>
 
-    </TableLayout>
 
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/CreditsPage_version"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/CreditsPage_divider"
+        android:text="@string/version"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginHorizontal="20dp"/>
+
+        <TextView
+            android:id="@+id/CreditsPage_privacyPolicy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/privacyPolicy"
+            app:layout_constraintStart_toEndOf="@id/CreditsPage_divider"
+            app:layout_constraintTop_toTopOf="@id/CreditsPage_divider"
+            app:layout_constraintBottom_toBottomOf="@id/CreditsPage_divider"
+            android:layout_marginEnd="10dp"
+            android:textSize="12sp"
+            android:layout_marginStart="10dp"/>
+
+        <TextView
+            android:id="@+id/CreditsPage_divider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="|"
+            android:textSize="12sp"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/CreditsPage_copyright"/>
+
+    <TextView
+        android:id="@+id/CreditsPage_TermsNConditions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/termsNConditions"
+        app:layout_constraintEnd_toStartOf="@id/CreditsPage_divider"
+        android:textSize="12sp"
+        app:layout_constraintTop_toTopOf="@id/CreditsPage_divider"
+        app:layout_constraintBottom_toBottomOf="@id/CreditsPage_divider"
+        android:layout_marginEnd="10dp"/>
+
+    <TextView
+        android:id="@+id/CreditsPage_copyright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/copyright"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintBottom_toTopOf="@id/CreditsPage_usageReminder"/>
+    <TextView
+        android:id="@+id/CreditsPage_usageReminder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:text="@string/usageReminder"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
