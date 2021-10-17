@@ -18,6 +18,7 @@ Some new things I’ve learned:
 - Presenting image links: Glide
 - How to attribute resources used in a app and software licenses
 - How to publish an app to Google Play Store
+- Activity BackStak
 
 Libraries and resources I used 
 - Volley
@@ -27,6 +28,8 @@ Libraries and resources I used
 
 -----------------------------------------------------------------------------------------------------------------------------------
 **Terms & Conditions**
+
+This app contains the libraries/resources shown above. Including Volley(https://github.com/google/volley/blob/master/LICENSE), Glide(https://github.com/bumptech/glide/blob/master/LICENSE), Google Places API(https://policies.google.com/terms?hl=en,https://cloud.google.com/maps-platform/terms/#3.-license.). Downloading and using this app mean that you're awared and agree with the terms of use and other services restrictions that they are bounded under. Please see their license by clicking each link provided above.
 
 By downloading or using the app, you are automatically bounded by the Google Terms of Service(https://policies.google.com/terms?hl=en). As well as any of the nessecary guildlines in Google Maps Platform Terms of Service(https://cloud.google.com/maps-platform/terms/#3.-license.). These terms will automatically apply to you – you should make sure therefore that you read them carefully before using the app. You’re not allowed to copy, or modify the app, any part of the app, or our trademarks in any way. You’re not allowed to attempt to extract the source code of the app, and you also shouldn’t try to translate the app into other languages, or make derivative versions. The app itself, and all the trade marks, copyright, database rights and other intellectual property rights related to it, still belong to Hsieh Heng-An.
 
