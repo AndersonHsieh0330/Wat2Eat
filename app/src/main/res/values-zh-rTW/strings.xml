@@ -33,8 +33,8 @@
     <string name="resourceName_licenseDialog">- LicenseDialog</string>
     <string name="version">今天吃甚麼 v1.0</string>
     <string name="copyright">Copyright © 2021 Hsieh Heng-An. All rights reserved.</string>
-    <string name="termsNConditions">Terms &amp; Conditions</string>
-    <string name="privacyPolicy">Privacy Policy</string>
+    <string name="termsNConditions"><u>Terms &amp; Conditions</u></string>
+    <string name="privacyPolicy"><u>Privacy Policy</u></string>
     <string name="noticeTitle">授權</string>
     <string name="close">關閉</string>
     <string name="termsAndConditions_Context"><br>

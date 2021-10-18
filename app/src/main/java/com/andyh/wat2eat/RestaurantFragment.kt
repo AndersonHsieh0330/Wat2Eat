@@ -84,7 +84,6 @@ class RestaurantFragment : Fragment(){
             val width = preferences.getInt("restaurantImageWidth", 0)
             //center crop auto adjust the size of the image to fit the size of the imageview
             //but doesn't retain the aspect ratio of the photo
-            Log.d("EEEEE", "onViewCreated: $width")
             Glide.with(this)
                 .load("https://maps.googleapis.com/maps/api/place/photo?maxwidth=$width&photo_reference=$photoReference&key=AIzaSyDk0zxRUPq73N7hQ8nw7VhEgGcMdKRCpws")
                 .centerCrop()
