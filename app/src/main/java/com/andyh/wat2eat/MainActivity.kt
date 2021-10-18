@@ -36,13 +36,13 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private lateinit var searchBTN:Button
-    private lateinit var creditsBTN:ImageButton
-    private lateinit var infoBTN:ImageButton
-    private val FINELOCATIONRQ = 101;
-    private lateinit var queue:RequestQueue;
+    private lateinit var searchBTN: Button
+    private lateinit var creditsBTN: ImageButton
+    private lateinit var infoBTN: ImageButton
+    private val FINELOCATIONRQ = 101
+    private lateinit var queue: RequestQueue
     private val apiKey = "AIzaSyDk0zxRUPq73N7hQ8nw7VhEgGcMdKRCpws"
-    private lateinit var vibrator:Vibrator
+    private lateinit var vibrator: Vibrator
 
     //parameter tags for API calls
     private val LANGUAGETAG = Locale.getDefault().toLanguageTag()
@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
     private val PHOTOTAG = "photos"
     private val PHOTOREFERENCETAG = "photo_reference"
     private val RESULTTAG = "result"
-    private val ATTRIBUTETAG= "html_attributions"
+    private val ATTRIBUTETAG = "html_attributions"
 
     //bundle tags
     val STATUSMESSAGETAG = "statueMessage"
@@ -68,12 +68,12 @@ class MainActivity : AppCompatActivity() {
     private var pageCount = 0
 
     //PlaceID of a currently opened restaurant
-    private var placeID:String? = null
+    private var placeID: String? = null
 
     //We retrieve restaurant rating during the "Nearby Search" request
     //since "Rating" is in the category of "Atmosphere Data", which will be counted as additional cost to Place Detail request
     //*Note: Name, Address, URL are in "Basic Data" category, no additional cost
-    private var restaurantRating:Double? = null;
+    private var restaurantRating: Double? = null;
 
     //keep track of restaurants that were presented to user before
     //to avoid showing duplicate restaurants
@@ -92,62 +92,82 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        
+
         //set content to root of binding instead of XML layout
         setContentView(binding.root)
         queue = Volley.newRequestQueue(this)
         initElements()
 
         val loadFrag = LoadingFragment()
-        supportFragmentManager.beginTransaction().add(R.id.MainActivity_restaurantFragmentContainer, loadFrag).commit()
+        supportFragmentManager.beginTransaction()
+            .add(R.id.MainActivity_restaurantFragmentContainer, loadFrag).commit()
 
         fetchNearByRestaurantData()
 
     }
 
 
-    private fun checkForPermissions(permission:String, name:String, requestCode:Int){
+    private fun checkForPermissions(permission: String, name: String, requestCode: Int) {
         //check that user's OS systme has API level 23 or above
         //before API level 23, run time permission was not needed
-        when{
+        when {
             //check each statement individually
             //when statement exit once a branch is executed
-            ContextCompat.checkSelfPermission(applicationContext,permission) == PackageManager.PERMISSION_GRANTED -> {
+            ContextCompat.checkSelfPermission(
+                applicationContext,
+                permission
+            ) == PackageManager.PERMISSION_GRANTED -> {
                 //User already approved location permission
                 when {
                     !isGPSOn() -> //GPS required dialog
-                        displayTextDialog(R.string.GPSRequestDialogTitle,R.string.GPSRequestDialogMessage, false)
+                        displayTextDialog(
+                            R.string.GPSRequestDialogTitle,
+                            R.string.GPSRequestDialogMessage,
+                            false
+                        )
                     !isWifiOn() -> //Internet required dialog
-                        displayTextDialog(R.string.InternetConnectionRequestDialogTitle,R.string.InternetConnectionRequestDialogMessage, false)
+                        displayTextDialog(
+                            R.string.InternetConnectionRequestDialogTitle,
+                            R.string.InternetConnectionRequestDialogMessage,
+                            false
+                        )
 
-                    isGPSOn() && isWifiOn() ->{
+                    isGPSOn() && isWifiOn() -> {
                         getLocation()
                     }
                 }
             }
 
             shouldShowRequestPermissionRationale(permission) -> {
-                displayTextDialog(R.string.PermissionExplanationDialogTitle,R.string.PermissionExplanationDialogMessage, false)
+                displayTextDialog(
+                    R.string.PermissionExplanationDialogTitle,
+                    R.string.PermissionExplanationDialogMessage,
+                    false
+                )
 
             }
             else -> {
                 requestPermissions(
                     arrayOf(permission),
-                    requestCode)
+                    requestCode
+                )
 
             }
         }
 
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int,
-                                            permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>, grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             FINELOCATIONRQ -> {
                 // If request is cancelled, the result arrays are empty.
                 if ((grantResults.isNotEmpty() &&
-                                grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                            grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                ) {
                     // system permission request dialog is popped and granted the location permission
                     //execute getLocation() after user approve the location permission
                     getLocation()
@@ -164,108 +184,136 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun initElements(){
+    private fun initElements() {
         //note vibrator requires a permission in Manifest
-        vibrator=getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         //use view binding to bind view elements
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         searchBTN = binding.MainActivitySearchBTN
         infoBTN = binding.MainActivityInfoBTN
         creditsBTN = binding.MainActivityCreditsBTN
 
-        creditsBTN.setOnClickListener{
-            if(isDataReady) {
-                val intent: Intent = Intent(this, CreditsPage::class.java)
+        creditsBTN.setOnClickListener {
+            if (isDataReady) {
+                val intent = Intent(this, CreditsPage::class.java)
                 startActivity(intent)
             }
         }
 
         infoBTN.setOnClickListener {
-            if(isDataReady) {
-                displayTextDialog(R.string.infoDialogTitle, R.string.infoDialogMessage,true)
+            if (isDataReady) {
+                displayTextDialog(R.string.infoDialogTitle, R.string.infoDialogMessage, true)
 
             }
         }
 
         //set listeners to buttons
         searchBTN.setOnClickListener {
-            if(isDataReady) {
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O){
+            if (isDataReady) {
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                     //only vibrate if user's devices api leve is >= 26
-                    vibrator.vibrate(VibrationEffect.createOneShot(100,VibrationEffect.DEFAULT_AMPLITUDE))
+                    vibrator.vibrate(
+                        VibrationEffect.createOneShot(
+                            100,
+                            VibrationEffect.DEFAULT_AMPLITUDE
+                        )
+                    )
                 }
-                for(i in dataContainer.indices){
+                for (i in dataContainer.indices) {
                     //for each page of the dataContainer
                     placeID = searchCurrentPage(dataContainer[i])
-                    if(placeID!=null){
+                    if (placeID != null) {
                         placesFoundPreviously.add(placeID.toString())
-                        getPlaceDetail(placeID,restaurantRating)
+                        getPlaceDetail(placeID, restaurantRating)
                         break
                     }
                 }
                 //done scanning all the pages
-                if(placeID==null) {
+                if (placeID == null) {
                     launchTextFragment(resources.getString(R.string.outOfRestaurants))
                 }
             }
         }
 
         //disable the button until data is ready
-        searchBTN.isEnabled = false;
+        searchBTN.isEnabled = false
     }
 
-    private fun fetchNearByRestaurantData(){
+    private fun fetchNearByRestaurantData() {
         //Internet is not a dangerous permission, runtime permission request is not required
-        checkForPermissions(android.Manifest.permission.ACCESS_FINE_LOCATION,"Location",FINELOCATIONRQ)
+        checkForPermissions(
+            android.Manifest.permission.ACCESS_FINE_LOCATION,
+            "Location",
+            FINELOCATIONRQ
+        )
     }
 
     private fun getLocation() {
-        if(ContextCompat.checkSelfPermission(applicationContext,android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                &&ContextCompat.checkSelfPermission(applicationContext,android.Manifest.permission.INTERNET) == PackageManager.PERMISSION_GRANTED){
-            val locationTask:Task<Location> = fusedLocationClient.getCurrentLocation(LocationRequest.PRIORITY_HIGH_ACCURACY, CancellationTokenSource().token)
+        if (ContextCompat.checkSelfPermission(
+                applicationContext,
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+            && ContextCompat.checkSelfPermission(
+                applicationContext,
+                android.Manifest.permission.INTERNET
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            val locationTask: Task<Location> = fusedLocationClient.getCurrentLocation(
+                LocationRequest.PRIORITY_HIGH_ACCURACY,
+                CancellationTokenSource().token
+            )
             //use .getCurrentLocation() instead of getLastLocation() since we only need to request the location once
             locationTask.addOnCompleteListener { p0 ->
-                if(p0.isSuccessful){
-                    Log.d("MainActivity","long: ${p0.result.latitude} and lad: ${p0.result.longitude}")
-                        makeRestaurantRequest(p0.result.latitude, p0.result.longitude)
+                if (p0.isSuccessful) {
+                    Log.d(
+                        "MainActivity",
+                        "long: ${p0.result.latitude} and lad: ${p0.result.longitude}"
+                    )
+                    makeRestaurantRequest(p0.result.latitude, p0.result.longitude)
 
-                }else{
+                } else {
                     //request failed, GPS might be off
-                    displayTextDialog(R.string.restaurantRequestFailed_title, R.string.restaurantRequestFailed_message, false)
+                    displayTextDialog(
+                        R.string.restaurantRequestFailed_title,
+                        R.string.restaurantRequestFailed_message,
+                        false
+                    )
                     Log.d("MainActivity", "Get Location Failed ${p0.exception?.message}")
                 }
             }
         }
     }
 
-    private fun makeRestaurantRequest(latitude: Double, longitude: Double){
+    private fun makeRestaurantRequest(latitude: Double, longitude: Double) {
         //this function only executed when location request was successful and geocode is obtained
         val queryRadius = 500 //meters
         val queryType = "restaurant"
-        val queryURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=$latitude,$longitude&radius=$queryRadius&types=$queryType&key=$apiKey"
+        val queryURL =
+            "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=$latitude,$longitude&radius=$queryRadius&types=$queryType&key=$apiKey"
 
         Log.d("MainActivity", "makeRestaurantRequest: API request: $queryURL")
         val restaurantRequest = StringRequest(Request.Method.GET,
-                queryURL,
+            queryURL,
             { response ->
                 //Log.d("MainActivity","First response $response" )
                 try {
 
                     dataContainer.add(JSONObject(response))
-                    pageCount += 1;
+                    pageCount += 1
                     //first page has been initialized
 
-                    if(dataContainer[pageCount-1].has("next_page_token")) {
+                    if (dataContainer[pageCount - 1].has("next_page_token")) {
                         //user could be in the middle of no where and there's not enough restaurants for second page of data
-                        val nextPageToken = dataContainer[pageCount - 1].getString("next_page_token")
+                        val nextPageToken =
+                            dataContainer[pageCount - 1].getString("next_page_token")
 
-                        Handler().postDelayed(Runnable {
+                        Handler().postDelayed({
                             //the next page token becomes available after a short time delay(refer to Google Places API docs)
                             //thus we delay the request to avoid error
                             makeNextPageRequest(nextPageToken)
                         }, 2000)
 
-                    }else{
+                    } else {
                         //done fetching data from Places API, start scanning for opening restaurants
                         isDataReady = true
                         searchBTN.isEnabled = true
@@ -273,19 +321,32 @@ class MainActivity : AppCompatActivity() {
                         launchTextFragment(resources.getString(R.string.pressToSearch))
 
                     }
-                }catch (exception: JSONException){
-                    Log.d("MainActivity", "Got page $pageCount response, but failed to make request for page2. Error Message: ${exception.message}")
+                } catch (exception: JSONException) {
+                    Log.d(
+                        "MainActivity",
+                        "Got page $pageCount response, but failed to make request for page2. Error Message: ${exception.message}"
+                    )
                 }
             },
-            { error -> Log.d("MainActivity", "Failed to get page $pageCount response  Error Message: ${error.message}")
+            { error ->
+                Log.d(
+                    "MainActivity",
+                    "Failed to get page $pageCount response  Error Message: ${error.message}"
+                )
                 //let user know to try again later
-                displayTextDialog(R.string.locationRequestFailed_title,R.string.locationRequestFailed_Message, false )})
+                displayTextDialog(
+                    R.string.locationRequestFailed_title,
+                    R.string.locationRequestFailed_Message,
+                    false
+                )
+            })
 
         queue.add(restaurantRequest)
     }
 
-    private fun makeNextPageRequest(nextPageToken: String){
-        val queryURL:String = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=$nextPageToken&key=$apiKey"
+    private fun makeNextPageRequest(nextPageToken: String) {
+        val queryURL =
+            "https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=$nextPageToken&key=$apiKey"
         Log.d("MainActivity", "NextPage Request Url: $queryURL")
 
         val nextPageRequest = StringRequest(Request.Method.GET,
@@ -296,15 +357,16 @@ class MainActivity : AppCompatActivity() {
                     dataContainer.add(JSONObject(response))
                     pageCount += 1
 
-                    if(pageCount<=pageLimit && dataContainer[pageCount-1].has("next_page_token")) {
+                    if (pageCount <= pageLimit && dataContainer[pageCount - 1].has("next_page_token")) {
                         //user could be in the middle of no where and there's not enough restaurants for second page of data
-                        val nextPageToken = dataContainer[pageCount - 1].getString("next_page_token")
-                        Handler().postDelayed(Runnable {
+                        val nextPageToken =
+                            dataContainer[pageCount - 1].getString("next_page_token")
+                        Handler().postDelayed({
                             //the next page token becomes available after a short time delay(refer to Google Places API docs)
                             // thus we delay the request to avoid error
                             makeNextPageRequest(nextPageToken)
                         }, 2000)
-                    }else{
+                    } else {
                         //done fetching data from Places API, start scanning for opening restaurants
                         isDataReady = true
                         searchBTN.isEnabled = true
@@ -312,32 +374,38 @@ class MainActivity : AppCompatActivity() {
                         launchTextFragment(resources.getString(R.string.pressToSearch))
 
                     }
-                }catch (exception: JSONException){
-                    Log.d("MainActivity", "Got page1 response, but failed to make request for page2. Error Message: ${exception.message}")
+                } catch (exception: JSONException) {
+                    Log.d(
+                        "MainActivity",
+                        "Got page1 response, but failed to make request for page2. Error Message: ${exception.message}"
+                    )
 
                 }
 
             },
-            { error -> Log.d("MainActivity", "Page $pageCount request failed ${error.toString()}")
+            { error ->
+                Log.d("MainActivity", "Page $pageCount request failed ${error.toString()}")
                 //failed to get next page, but still allow user to see the pages that are already fetched
                 isDataReady = true
                 searchBTN.isEnabled = true
                 //let user know to that they can start searching restaurants
-                launchTextFragment(resources.getString(R.string.pressToSearch))})
+                launchTextFragment(resources.getString(R.string.pressToSearch))
+            })
 
-        queue.add(nextPageRequest);
+        queue.add(nextPageRequest)
 
     }
 
-    private fun getPlaceDetail(placeID:String?, rating:Double?){
+    private fun getPlaceDetail(placeID: String?, rating: Double?) {
 
-        if(placeID== null){
+        if (placeID == null) {
             //should never get here, there should be a restaurant open if this function is called
-        }else{
-            val queryURL:String = "https://maps.googleapis.com/maps/api/place/details/json?language=$LANGUAGETAG&fields=$NAMETAG,$ADDRESSTAG,$URLTAG,$PHOTOTAG&place_id=$placeID&key=$apiKey"
+        } else {
+            val queryURL =
+                "https://maps.googleapis.com/maps/api/place/details/json?language=$LANGUAGETAG&fields=$NAMETAG,$ADDRESSTAG,$URLTAG,$PHOTOTAG&place_id=$placeID&key=$apiKey"
             Log.d("MainActivity", "Place Detail Request Url: $queryURL ")
             val nextPageRequest = StringRequest(Request.Method.GET,
-                    queryURL,
+                queryURL,
                 { response ->
                     try {
                         val jsonObject = JSONObject(response)
@@ -348,46 +416,61 @@ class MainActivity : AppCompatActivity() {
                         val restaurantPhotoArray = placeDetail.getJSONArray(PHOTOTAG)
 
                         //pick random photo out of all the photo returned
-                        val selectedPhoto = restaurantPhotoArray.getJSONObject(((0 until restaurantPhotoArray.length()).random()))
+                        val selectedPhoto =
+                            restaurantPhotoArray.getJSONObject(((0 until restaurantPhotoArray.length()).random()))
                         val restaurantPhotoReference = selectedPhoto.getString(PHOTOREFERENCETAG)
 
                         //attribution is the string "null" when there's nothing required
 
-                        val restaurantPhotoAttribute = selectedPhoto.getJSONArray(ATTRIBUTETAG)[0].toString()
-                        sendDataToDisplay(restaurantName,restaurantRating,restaurantAddress,restaurantURL,restaurantPhotoReference, restaurantPhotoAttribute)
+                        val restaurantPhotoAttribute =
+                            selectedPhoto.getJSONArray(ATTRIBUTETAG)[0].toString()
+                        sendDataToDisplay(
+                            restaurantName,
+                            restaurantRating,
+                            restaurantAddress,
+                            restaurantURL,
+                            restaurantPhotoReference,
+                            restaurantPhotoAttribute
+                        )
 
-                        Log.d("MainActivity","Place detail response: \naddress: $restaurantAddress\nname: $restaurantName\nRating: $rating\nURL: $restaurantURL\nPhoto_reference: $restaurantPhotoReference")
+                        Log.d(
+                            "MainActivity",
+                            "Place detail response: \naddress: $restaurantAddress\nname: $restaurantName\nRating: $rating\nURL: $restaurantURL\nPhoto_reference: $restaurantPhotoReference"
+                        )
 
-                    }catch (exception:JSONException){
+                    } catch (exception: JSONException) {
                         Log.d("MainActivity", "place detail response failed: ${exception.message}")
                     }
 
                 },
-                { error -> Log.d("MainActivity", "Next page request failed ${error.toString()}")})
-            queue.add(nextPageRequest);
+                { error -> Log.d("MainActivity", "Next page request failed ${error.toString()}") })
+            queue.add(nextPageRequest)
         }
     }
 
-    private fun searchCurrentPage(jsonObject: JSONObject):String?{
-        val currentPageResults:JSONArray = jsonObject.getJSONArray("results")
+    private fun searchCurrentPage(jsonObject: JSONObject): String? {
+        val currentPageResults: JSONArray = jsonObject.getJSONArray("results")
 
         //iterate through all the restaurants until an open place is founded
-        for(i in (0 until currentPageResults.length())){
+        for (i in (0 until currentPageResults.length())) {
             try {
                 val restaurant = currentPageResults.getJSONObject(i)
                 val restaurantOpeningHours = restaurant.getJSONObject("opening_hours")
                 val isOpen = restaurantOpeningHours.getBoolean("open_now")
                 val currentRestaurantPlaceID = restaurant.getString("place_id")
-                if(isOpen&&!placesFoundPreviously.contains(currentRestaurantPlaceID)){
+                if (isOpen && !placesFoundPreviously.contains(currentRestaurantPlaceID)) {
                     //return restaurant placeID if found
-                        // also initialize restaurant rating alone with placeID found
-                            restaurantRating = restaurant.getDouble("rating")
+                    // also initialize restaurant rating alone with placeID found
+                    restaurantRating = restaurant.getDouble("rating")
                     return currentRestaurantPlaceID
                 }
-            }catch (exception: JSONException){
+            } catch (exception: JSONException) {
                 //some restaurants might not have register their opening time
                 //which makes their results end up here
-                Log.d("MainActivity", "scanCurrentPage: exception thrown ${exception.message} ${placeID}")
+                Log.d(
+                    "MainActivity",
+                    "scanCurrentPage: exception thrown ${exception.message} ${placeID}"
+                )
             }
 
         }
@@ -395,45 +478,60 @@ class MainActivity : AppCompatActivity() {
         return null
     }
 
-    private fun sendDataToDisplay(restaurantName:String, restaurantRating:Double?, restaurantAddress:String, restaurantURL:String, restaurantPhotoReference:String, restaurantPhotoAttribute:String){
+    private fun sendDataToDisplay(
+        restaurantName: String,
+        restaurantRating: Double?,
+        restaurantAddress: String,
+        restaurantURL: String,
+        restaurantPhotoReference: String,
+        restaurantPhotoAttribute: String
+    ) {
         val bundle = Bundle()
 
         //pass default values over if there are no values received from api response
         bundle.putString(NAMETAG, restaurantName)
-        bundle.putDouble(RATINGTAG, restaurantRating?:0.0)
+        bundle.putDouble(RATINGTAG, restaurantRating ?: 0.0)
         bundle.putString(ADDRESSTAG, restaurantAddress)
         bundle.putString(URLTAG, restaurantURL)
         bundle.putString(PHOTOREFERENCETAG, restaurantPhotoReference)
-        bundle.putString(ATTRIBUTETAG,restaurantPhotoAttribute)
+        bundle.putString(ATTRIBUTETAG, restaurantPhotoAttribute)
 
         val restaurantFragment = RestaurantFragment()
         restaurantFragment.arguments = bundle
 
-        supportFragmentManager.beginTransaction().replace(R.id.MainActivity_restaurantFragmentContainer, restaurantFragment).commit()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.MainActivity_restaurantFragmentContainer, restaurantFragment).commit()
 
     }
 
-    private fun launchTextFragment(message: String){
+    private fun launchTextFragment(message: String) {
         val textFrag = TextFragment()
         val bundle = Bundle()
         bundle.putString(STATUSMESSAGETAG, message)
         textFrag.arguments = bundle
-        supportFragmentManager.beginTransaction().add(R.id.MainActivity_restaurantFragmentContainer, textFrag).commit()
+        supportFragmentManager.beginTransaction()
+            .add(R.id.MainActivity_restaurantFragmentContainer, textFrag).commit()
 
     }
 
-    private fun isGPSOn():Boolean{
-        val manager:LocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        if ( !manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+    private fun isGPSOn(): Boolean {
+        val manager: LocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             //GPS required dialog
-            displayTextDialog(R.string.GPSRequestDialogTitle,R.string.GPSRequestDialogMessage, false)
+            displayTextDialog(
+                R.string.GPSRequestDialogTitle,
+                R.string.GPSRequestDialogMessage,
+                false
+            )
             return false
-        }else{
+        } else {
             return true
         }
     }
-    private fun isWifiOn():Boolean{
-        val connectivityManager = this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+    private fun isWifiOn(): Boolean {
+        val connectivityManager =
+            this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val network = connectivityManager.activeNetwork ?: return false
         val activeNetwork = connectivityManager.getNetworkCapabilities(network) ?: return false
 
@@ -458,11 +556,11 @@ class MainActivity : AppCompatActivity() {
         CancellationTokenSource().cancel()
     }
 
-    private fun displayTextDialog(title:Int, message:Int, cancelable:Boolean){
-        val dialogBuilder:AlertDialog.Builder =  AlertDialog.Builder(this)
+    private fun displayTextDialog(title: Int, message: Int, cancelable: Boolean) {
+        val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this)
         dialogBuilder.setTitle(resources.getString(title))
         dialogBuilder.setMessage(resources.getString(message))
         dialogBuilder.setCancelable(cancelable)
-        dialogBuilder.create().show();
+        dialogBuilder.create().show()
     }
 }

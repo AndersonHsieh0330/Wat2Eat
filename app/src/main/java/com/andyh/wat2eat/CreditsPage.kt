@@ -5,36 +5,27 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
-import android.util.Log
-import android.widget.Button
 import android.widget.ImageButton
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import androidx.core.view.marginEnd
-import androidx.core.view.setPadding
 import com.andyh.wat2eat.databinding.ActivityCreditsPageBinding
-import com.andyh.wat2eat.databinding.ActivityMainBinding
-import com.bumptech.glide.Glide
-import com.google.android.material.card.MaterialCardView
-import de.psdev.licensesdialog.LicensesDialog
-import de.psdev.licensesdialog.licenses.ApacheSoftwareLicense20
-import de.psdev.licensesdialog.licenses.License
-import de.psdev.licensesdialog.model.Notice
-import org.w3c.dom.Text
+
 
 class CreditsPage : AppCompatActivity() {
 
     private lateinit var binding: ActivityCreditsPageBinding
     private lateinit var closeBTN: ImageButton
 
-    private lateinit var volleyLicenseBTN:TextView
-    private lateinit var glideLicenseBTN:TextView
-    private lateinit var googlePlacesAPILicenseBTN:TextView
-    private lateinit var licenseDialogLicenseBTN:TextView
+    private lateinit var volleyLicenseBTN: TextView
+    private lateinit var glideLicenseBTN: TextView
+    private lateinit var googlePlacesAPILicenseBTN: TextView
+    private lateinit var termsNConditions: TextView
+    private lateinit var privacyPolicy: TextView
 
-    private lateinit var gitHubLink:ImageButton
-    private lateinit var instagramLink:ImageButton
-    private lateinit var linkedInLink:ImageButton
+    private lateinit var gitHubLink: ImageButton
+    private lateinit var instagramLink: ImageButton
+    private lateinit var linkedInLink: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,17 +34,20 @@ class CreditsPage : AppCompatActivity() {
         initElement()
     }
 
-    private fun initElement(){
+    private fun initElement() {
         closeBTN = binding.CreditsPageCloseBTN
 
         volleyLicenseBTN = binding.CreditsPageVolleyLicenseBTN
-        glideLicenseBTN= binding.CreditsPageGlideLicenseBTN
+        glideLicenseBTN = binding.CreditsPageGlideLicenseBTN
         googlePlacesAPILicenseBTN = binding.CreditsPageGooglePlacesAPILicenseBTN
+        termsNConditions = binding.CreditsPageTermsNConditions
+        privacyPolicy = binding.CreditsPagePrivacyPolicy
 
         gitHubLink = binding.CreditsPageGithubLink
         instagramLink = binding.CreditsPageInstagramLink
         linkedInLink = binding.CreditsPageLinkedInLink
 
+        //to my social media profile
         gitHubLink.setOnClickListener {
             goToUrl(resources.getString(R.string.GitHubLink))
         }
@@ -64,46 +58,49 @@ class CreditsPage : AppCompatActivity() {
             goToUrl(resources.getString(R.string.LinkedInLink))
         }
         closeBTN.setOnClickListener {
+            //use finish() instead of starting a new activity since our launch mode is "standard"
             finish()
         }
 
         volleyLicenseBTN.setOnClickListener {
-            val name = "Volley";
-            val url = "https://github.com/google/volley/blob/master/LICENSE";
-            val copyright = "Copyright 2013 Philip Schiffer <admin@psdev.de>";
-            val license:License = ApacheSoftwareLicense20();
-            val notice: Notice  = Notice(name, url, copyright, license);
-            val builder = LicensesDialog.Builder(this)
-            builder.setNotices(notice)
-                .build()
-                .show();
+            displayLargeTextScrollableDialog(R.string.noticeTitle,R.string.VolleyLicense)
+
         }
         glideLicenseBTN.setOnClickListener {
-            val tv = TextView(this)
-            tv.movementMethod=LinkMovementMethod.getInstance()
-            tv.setText(R.string.GlideLicense)
-            tv.setPadding(20,20,20,0)
-            val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-            builder.setTitle(R.string.notices_title)
-            builder.setView(tv)
-            builder.setPositiveButton(R.string.notices_close,null).show()
+        displayLargeTextScrollableDialog(R.string.noticeTitle,R.string.GlideLicense)
 
         }
 
 
         googlePlacesAPILicenseBTN.setOnClickListener {
-            val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-            builder.setTitle(R.string.notices_title)
-            builder.setMessage(resources.getString(R.string.GlideLicense))
-            builder.setPositiveButton(R.string.notices_close,null).show()
+            displayLargeTextScrollableDialog(R.string.noticeTitle,R.string.GooglePlacesAPILicense)
+        }
+        termsNConditions.setOnClickListener {
+            displayLargeTextScrollableDialog(R.string.termsNConditions,R.string.termsAndConditions_Context)
+        }
+
+        privacyPolicy.setOnClickListener {
+            displayLargeTextScrollableDialog(R.string.privacyPolicy,R.string.privacyPolicy_Context)
         }
     }
 
+    private fun displayLargeTextScrollableDialog(title:Int, message:Int){
+        //display text in a textview => scrollview instead of using the setMessage() method of alert dialog
+        //To let the hyper links be clickable inside of the message
+        val tv = TextView(this)
+        tv.movementMethod = LinkMovementMethod.getInstance()
+        tv.setText(message)
+        tv.setPadding(70, 20, 70, 0)
+        val sv = ScrollView(this)
+        sv.addView(tv)
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setTitle(title)
+        builder.setView(sv)
+        builder.setPositiveButton(R.string.close, null).show()
+    }
 
-
-    private fun goToUrl(url:String) {
-
-        val intent:Intent = Intent(Intent.ACTION_VIEW, Uri.parse(url));
+    private fun goToUrl(url: String) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         startActivity(intent)
     }
-    }
+}

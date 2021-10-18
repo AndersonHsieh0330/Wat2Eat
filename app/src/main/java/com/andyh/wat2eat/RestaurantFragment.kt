@@ -1,13 +1,7 @@
 package com.andyh.wat2eat
 
-import android.content .Context
-import android.content.SharedPreferences
-import android.graphics.Point
-import android.os.Build
 import android.os.Bundle
-import android.text.Html
 import android.text.method.LinkMovementMethod
-import android.text.method.MovementMethod
 import android.util.Log
 import android.view.*
 import android.widget.ImageView
@@ -21,13 +15,13 @@ import java.lang.ClassCastException
 import java.util.*
 
 class RestaurantFragment : Fragment(){
-    private lateinit var binding: FragmentRestaurantBinding;
-    private lateinit var restaurantName: TextView;
-    private lateinit var restaurantRating: RatingBar;
-    private lateinit var restaurantAddress: TextView;
-    private lateinit var restaurantURL: TextView;
+    private lateinit var binding: FragmentRestaurantBinding
+    private lateinit var restaurantName: TextView
+    private lateinit var restaurantRating: RatingBar
+    private lateinit var restaurantAddress: TextView
+    private lateinit var restaurantURL: TextView
     private lateinit var restaurantPhotoAttribute: TextView
-    private lateinit var restaurantImage: ImageView;
+    private lateinit var restaurantImage: ImageView
 
 
     //TAGs for API calls
@@ -42,7 +36,7 @@ class RestaurantFragment : Fragment(){
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?): View {
         // Inflate the layout for this fragment
         binding = FragmentRestaurantBinding.inflate(inflater,container,false)
 
@@ -87,7 +81,7 @@ class RestaurantFragment : Fragment(){
             }
         }else{
 
-            val width = preferences?.getInt("restaurantImageWidth", 0)
+            val width = preferences.getInt("restaurantImageWidth", 0)
             //center crop auto adjust the size of the image to fit the size of the imageview
             //but doesn't retain the aspect ratio of the photo
             Log.d("EEEEE", "onViewCreated: $width")

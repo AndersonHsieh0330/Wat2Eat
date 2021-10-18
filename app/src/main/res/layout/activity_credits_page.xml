@@ -209,18 +209,7 @@
         android:gravity="center"
         android:textSize="12sp"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="50dp"
-        app:layout_constraintBottom_toTopOf="@id/CreditsPage_usageReminder"/>
-    <TextView
-        android:id="@+id/CreditsPage_usageReminder"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginHorizontal="20dp"
         android:layout_marginBottom="20dp"
-        android:gravity="center"
-        android:textSize="12sp"
-        android:text="@string/usageReminder"/>
-
+        android:layout_marginTop="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
