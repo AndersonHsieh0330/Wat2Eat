@@ -4,24 +4,24 @@
     <string name="searchBTNText">Search</string>
     <string name="preparingRestaurantData">Fetching Data</string>
     <string name="outOfRestaurants">No more restaurants results</string>
-    <string name="pressToSearch">Plesae press search to find a restaurant</string>
+    <string name="pressToSearch">Please press search to find a restaurant</string>
     <string name="PermissionExplanationDialogTitle">Permission Required</string>
     <string name="PermissionExplanationDialogMessage">Please turn on </string>
     <string name="GPSRequestDialogTitle">Location Service Required</string>
     <string name="GPSRequestDialogMessage">Please turn on location service to continue</string>
     <string name="InternetConnectionRequestDialogTitle">Internet Connection Required</string>
-    <string name="InternetConnectionRequestDialogMessage">Please connect to the Ineternet to continue</string>
+    <string name="InternetConnectionRequestDialogMessage">Please connect to the Internet to continue</string>
     <string name="locationRequestFailed_title">Location Request Failed</string>
     <string name="locationRequestFailed_Message">Sorry, we were unable to fetch you location. Please check the device environment then try again later by restarting the App.</string>
     <string name="infoDialogTitle">Note</string>
-    <string name="infoDialogMessage"><br>1. The radius of searching diatance is 500m\n2. Wat2Eat fetch your location when app is first started, if you change location, please restart the app.</br></string>
+    <string name="infoDialogMessage"><br>1. The radius of searching distance is 500m\n2. Wat2Eat fetch your location when app is first started, if you change location, please restart the app.</br></string>
     <string name="aboutPage">About</string>
     <string name="aboutPageDescription"><br>Wat2Eat is a non-profitable App.\nMade as a practice App along my journey of becoming a Android Developer.\n\nHope you enjoy it.\nFeel free to contact me with any questions or advices!</br></string>
     <string name="madeWithLove">Made by Anderson Hsieh with ♡</string>
     <string name="InstagramLink">https://www.instagram.com/anderson_hsieh0330/</string>
     <string name="LinkedInLink">https://www.linkedin.com/in/anderson-hsieh-6003a41ba/</string>
     <string name="GitHubLink">https://github.com/AndersonHsieh0330/Wat2Eat</string>
-    <string name="resourcesUsed">Libraries, APIs and other resources used:</string>
+    <string name="resourcesUsed">Resources used:</string>
     <string name="GlideLicense"><br>Glide <a href="https://github.com/bumptech/glide">https://github.com/bumptech/glide</a>\n\nCopyright 2014 Google, Inc. All rights reserved.\n\nTHIS SOFTWARE IS PROVIDED BY GOOGLE, INC. ``AS IS\'\' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL GOOGLE, INC. OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</br></string>
     <string name="restaurantRequestFailed_title">Failed to request for restaurant</string>
     <string name="restaurantRequestFailed_message">Sorry, error occur while trying to find restaurants, please try again later by restarting the App.</string>
@@ -39,7 +39,7 @@
     <string name="termsAndConditions_Context"><br>
         This app contains the libraries/resources shown above. Including Volley(<a href="https://github.com/google/volley/blob/master/LICENSE">https://github.com/google/volley/blob/master/LICENSE</a>), Glide(<a href="https://github.com/bumptech/glide/blob/master/LICENSE">https://github.com/bumptech/glide/blob/master/LICENSE</a>), Google Places API(<a href="https://policies.google.com/terms?hl=en,https://cloud.google.com/maps-platform/terms/#3.-license.">https://policies.google.com/terms?hl=en,https://cloud.google.com/maps-platform/terms/#3.-license.</a>). Downloading and using this app mean that you\'re aware and agree with the terms of use and other services restrictions that they are bounded under. Please see their license by clicking each link provided above.
 
-By downloading or using the app, you are automatically bounded by the Google Terms of Service(https://policies.google.com/terms?hl=en). As well as any of the necessary guidelines in Google Maps Platform Terms of Service(https://cloud.google.com/maps-platform/terms/#3.-license.). These terms will automatically apply to you – you should make sure therefore that you read them carefully before using the app. You’re not allowed to copy, or modify the app, any part of the app, or our trademarks in any way. You’re not allowed to attempt to extract the source code of the app, and you also shouldn’t try to translate the app into other languages, or make derivative versions. The app itself, and all the trade marks, copyright, database rights and other intellectual property rights related to it, still belong to Hsieh Heng-An.
+By downloading or using the app, you are automatically bounded by the Google Terms of Service(https://policies.google.com/terms?hl=en). As well as any of the necessary guidelines in Google Maps Platform Terms of Service(https://cloud.google.com/maps-platform/terms/#3.-license.). These terms will automatically apply to you – you should make sure therefore that you read them carefully before using the app. You’re not allowed to copy, or modify the app, any part of the app, or our trademarks in any way. You’re not allowed to attempt to extract the source code of the app, and you also shouldn/’t try to translate the app into other languages, or make derivative versions. The app itself, and all the trade marks, copyright, database rights and other intellectual property rights related to it, still belong to Hsieh Heng-An.
 
 Hsieh Heng-An is committed to ensuring that the app is as useful and efficient as possible. For that reason, we reserve the right to make changes to the app or to charge for its services, at any time and for any reason. We will never charge you for the app or its services without making it very clear to you exactly what you’re paying for.
 
@@ -151,4 +151,6 @@ This Terms and Conditions page was generated by [App Privacy Policy Generator](h
         * <a href="https://cloud.google.com/maps-platform/terms/#3.-license.">Google Maps Platform Terms of Service</a>\n\n
         * <a href="https://developers.google.com/maps/documentation/places/web-service/policies">Places API Policies</a></br></string>
 
+
+    <string name = "dataFetchingFailed">Data Fetching Failed. Please restart after checking network and GPS environment.</string>
 </resources>

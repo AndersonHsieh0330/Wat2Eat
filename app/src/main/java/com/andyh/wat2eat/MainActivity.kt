@@ -85,6 +85,10 @@ class MainActivity : AppCompatActivity() {
     //indicating whether restaurant data is ready or not
     var isDataReady = false
 
+    //indicates that loading is finished
+    //This value is used to unlock the infoBTN and About page when data fetching fails
+    var isLoadingFinished = false
+
 
     private lateinit var binding: ActivityMainBinding
 
@@ -107,82 +111,6 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun checkForPermissions(permission: String, name: String, requestCode: Int) {
-        //check that user's OS systme has API level 23 or above
-        //before API level 23, run time permission was not needed
-        when {
-            //check each statement individually
-            //when statement exit once a branch is executed
-            ContextCompat.checkSelfPermission(
-                applicationContext,
-                permission
-            ) == PackageManager.PERMISSION_GRANTED -> {
-                //User already approved location permission
-                when {
-                    !isGPSOn() -> //GPS required dialog
-                        displayTextDialog(
-                            R.string.GPSRequestDialogTitle,
-                            R.string.GPSRequestDialogMessage,
-                            false
-                        )
-                    !isWifiOn() -> //Internet required dialog
-                        displayTextDialog(
-                            R.string.InternetConnectionRequestDialogTitle,
-                            R.string.InternetConnectionRequestDialogMessage,
-                            false
-                        )
-
-                    isGPSOn() && isWifiOn() -> {
-                        getLocation()
-                    }
-                }
-            }
-
-            shouldShowRequestPermissionRationale(permission) -> {
-                displayTextDialog(
-                    R.string.PermissionExplanationDialogTitle,
-                    R.string.PermissionExplanationDialogMessage,
-                    false
-                )
-
-            }
-            else -> {
-                requestPermissions(
-                    arrayOf(permission),
-                    requestCode
-                )
-
-            }
-        }
-
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>, grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            FINELOCATIONRQ -> {
-                // If request is cancelled, the result arrays are empty.
-                if ((grantResults.isNotEmpty() &&
-                            grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                ) {
-                    // system permission request dialog is popped and granted the location permission
-                    //execute getLocation() after user approve the location permission
-                    getLocation()
-                } else {
-                    //system permission request dialog is popped and user selected to not allow the location permission
-                }
-                return
-            }
-            //make another branch for other permission here
-            else -> {
-                // Ignore all other requests.
-            }
-        }
-    }
-
 
     private fun initElements() {
         //note vibrator requires a permission in Manifest
@@ -194,14 +122,14 @@ class MainActivity : AppCompatActivity() {
         creditsBTN = binding.MainActivityCreditsBTN
 
         creditsBTN.setOnClickListener {
-            if (isDataReady) {
+            if (isLoadingFinished) {
                 val intent = Intent(this, CreditsPage::class.java)
                 startActivity(intent)
             }
         }
 
         infoBTN.setOnClickListener {
-            if (isDataReady) {
+            if (isLoadingFinished) {
                 displayTextDialog(R.string.infoDialogTitle, R.string.infoDialogMessage, true)
 
             }
@@ -248,6 +176,87 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
+    private fun checkForPermissions(permission: String, name: String, requestCode: Int) {
+        //check that user's OS systme has API level 23 or above
+        //before API level 23, run time permission was not needed
+        when {
+            //check each statement individually
+            //when statement exit once a branch is executed
+            ContextCompat.checkSelfPermission(
+                applicationContext,
+                permission
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                //User already approved location permission
+                when {
+                    !isGPSOn() -> {//GPS required dialog
+                        displayTextDialog(
+                            R.string.GPSRequestDialogTitle,
+                            R.string.GPSRequestDialogMessage,
+                            true
+                        )
+                        dataFetchingFailed()
+                    }
+                    !isWifiOn() -> {//Internet required dialog
+                        displayTextDialog(
+                            R.string.InternetConnectionRequestDialogTitle,
+                            R.string.InternetConnectionRequestDialogMessage,
+                            true
+                        )
+                        dataFetchingFailed()
+                    }
+
+                    isGPSOn() && isWifiOn() -> {
+                        getLocation()
+                    }
+                }
+            }
+
+            shouldShowRequestPermissionRationale(permission) -> {
+                displayTextDialog(
+                    R.string.PermissionExplanationDialogTitle,
+                    R.string.PermissionExplanationDialogMessage,
+                    true
+                )
+                dataFetchingFailed()
+            }
+            else -> {
+                requestPermissions(
+                    arrayOf(permission),
+                    requestCode
+                )
+
+            }
+        }
+
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>, grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            FINELOCATIONRQ -> {
+                // If request is cancelled, the result arrays are empty.
+                if ((grantResults.isNotEmpty() &&
+                            grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                ) {
+                    // system permission request dialog is popped and granted the location permission
+                    //execute getLocation() after user approve the location permission
+                    getLocation()
+                } else {
+                    //system permission request dialog is popped and user selected to not allow the location permission
+                    dataFetchingFailed()
+                }
+                return
+            }
+            //make another branch for other permission here
+            else -> {
+                // Ignore all other requests.
+            }
+        }
+    }
+
     private fun getLocation() {
         if (ContextCompat.checkSelfPermission(
                 applicationContext,
@@ -270,14 +279,14 @@ class MainActivity : AppCompatActivity() {
                         "long: ${p0.result.latitude} and lad: ${p0.result.longitude}"
                     )
                     makeRestaurantRequest(p0.result.latitude, p0.result.longitude)
-
                 } else {
                     //request failed, GPS might be off
                     displayTextDialog(
                         R.string.restaurantRequestFailed_title,
                         R.string.restaurantRequestFailed_message,
-                        false
+                        true
                     )
+                    dataFetchingFailed()
                     Log.d("MainActivity", "Get Location Failed ${p0.exception?.message}")
                 }
             }
@@ -311,11 +320,12 @@ class MainActivity : AppCompatActivity() {
                             //the next page token becomes available after a short time delay(refer to Google Places API docs)
                             //thus we delay the request to avoid error
                             makeNextPageRequest(nextPageToken)
-                        }, 2000)
+                        }, 1500)
 
                     } else {
                         //done fetching data from Places API, start scanning for opening restaurants
                         isDataReady = true
+                        isLoadingFinished = true
                         searchBTN.isEnabled = true
                         //let user know to that they can start searching restaurants
                         launchTextFragment(resources.getString(R.string.pressToSearch))
@@ -324,7 +334,7 @@ class MainActivity : AppCompatActivity() {
                 } catch (exception: JSONException) {
                     Log.d(
                         "MainActivity",
-                        "Got page $pageCount response, but failed to make request for page2. Error Message: ${exception.message}"
+                        "Got page $pageCount response, but error occur while requesting for next pages. Error Message: ${exception.message}"
                     )
                 }
             },
@@ -337,8 +347,9 @@ class MainActivity : AppCompatActivity() {
                 displayTextDialog(
                     R.string.locationRequestFailed_title,
                     R.string.locationRequestFailed_Message,
-                    false
+                    true
                 )
+                dataFetchingFailed()
             })
 
         queue.add(restaurantRequest)
@@ -369,6 +380,7 @@ class MainActivity : AppCompatActivity() {
                     } else {
                         //done fetching data from Places API, start scanning for opening restaurants
                         isDataReady = true
+                        isLoadingFinished = true
                         searchBTN.isEnabled = true
                         //let user know to that they can start searching restaurants
                         launchTextFragment(resources.getString(R.string.pressToSearch))
@@ -377,7 +389,7 @@ class MainActivity : AppCompatActivity() {
                 } catch (exception: JSONException) {
                     Log.d(
                         "MainActivity",
-                        "Got page1 response, but failed to make request for page2. Error Message: ${exception.message}"
+                        "Got page1 response, but error occur while requesting for next pages. Error Message: ${exception.message}"
                     )
 
                 }
@@ -387,6 +399,7 @@ class MainActivity : AppCompatActivity() {
                 Log.d("MainActivity", "Page $pageCount request failed ${error.toString()}")
                 //failed to get next page, but still allow user to see the pages that are already fetched
                 isDataReady = true
+                isLoadingFinished = true
                 searchBTN.isEnabled = true
                 //let user know to that they can start searching restaurants
                 launchTextFragment(resources.getString(R.string.pressToSearch))
@@ -549,18 +562,24 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
-    override fun onStop() {
-        super.onStop()
-        //cancel the request when this activity is not visible
-        CancellationTokenSource().cancel()
-    }
-
     private fun displayTextDialog(title: Int, message: Int, cancelable: Boolean) {
         val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this)
         dialogBuilder.setTitle(resources.getString(title))
         dialogBuilder.setMessage(resources.getString(message))
         dialogBuilder.setCancelable(cancelable)
         dialogBuilder.create().show()
+    }
+
+    private fun dataFetchingFailed(){
+        //indicates that loading is finished and unlock About page and infoBTN
+        isDataReady = false
+        isLoadingFinished = true
+        launchTextFragment(resources.getString(R.string.dataFetchingFailed))
+    }
+
+    override fun onStop() {
+        super.onStop()
+        //cancel the request when this activity is not visible
+        CancellationTokenSource().cancel()
     }
 }
