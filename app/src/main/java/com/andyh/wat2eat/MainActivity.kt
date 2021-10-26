@@ -300,11 +300,11 @@ class MainActivity : AppCompatActivity() {
         val queryURL =
             "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=$latitude,$longitude&radius=$queryRadius&types=$queryType&key=$apiKey"
 
-        Log.d("MainActivity", "makeRestaurantRequest: API request: $queryURL")
+        Log.d("MainActivity", "makeRestaurantRequest: Restaurant Request sent")
         val restaurantRequest = StringRequest(Request.Method.GET,
             queryURL,
             { response ->
-                //Log.d("MainActivity","First response $response" )
+                Log.d("MainActivity","makeRestaurantRequest: initial response $response" )
                 try {
 
                     dataContainer.add(JSONObject(response))
@@ -358,12 +358,12 @@ class MainActivity : AppCompatActivity() {
     private fun makeNextPageRequest(nextPageToken: String) {
         val queryURL =
             "https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=$nextPageToken&key=$apiKey"
-        Log.d("MainActivity", "NextPage Request Url: $queryURL")
+        Log.d("MainActivity", "makeNextPageRequest: NextPage Request sent")
 
         val nextPageRequest = StringRequest(Request.Method.GET,
             queryURL,
             { response ->
-                //Log.d("MainActivity", "Next page response: $response")
+                Log.d("MainActivity", "Next page response: $response")
                 try {
                     dataContainer.add(JSONObject(response))
                     pageCount += 1
@@ -416,7 +416,7 @@ class MainActivity : AppCompatActivity() {
         } else {
             val queryURL =
                 "https://maps.googleapis.com/maps/api/place/details/json?language=$LANGUAGETAG&fields=$NAMETAG,$ADDRESSTAG,$URLTAG,$PHOTOTAG&place_id=$placeID&key=$apiKey"
-            Log.d("MainActivity", "Place Detail Request Url: $queryURL ")
+            Log.d("MainActivity", "getPlaceDetail: Place Detail Request sent")
             val nextPageRequest = StringRequest(Request.Method.GET,
                 queryURL,
                 { response ->
