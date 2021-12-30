@@ -1,4 +1,4 @@
-You ever get really hungry but have no idea what food is available in your area? Or just tired of having the same stuff everyday? Wat2Eat is here to let you know what food is available around you!
+You ever get really hungry but have no idea what food is available in your area? Or just tired of having the same stuff everyday? Wat2Eat is here to let you know what food is available around you! Check out on [Google Play](https://play.google.com/store/apps/details?id=com.andyh.wat2eat)
 
 I often found myself scrolling on Google map and checking each little food tags to find an open restaurant to get food from. So I thought why not make an app that shows all opening restaurant and save some time?
 
