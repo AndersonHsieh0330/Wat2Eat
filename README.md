@@ -2,7 +2,6 @@
 - [Google Play](https://play.google.com/store/apps/details?id=com.andyh.wat2eat)
 - [Figma](https://www.figma.com/file/rGpGtZTBn2PRsM8Y1U5fIi/Wat2Eat)
 <br/>
-<br/>
 You ever gotten really hungry but have no idea what food is available in your area? Or just tired of having the same stuff every day? Wat2Eat is here to let you know what food is available around you! Check out Wat2Eat on [Google Play](https://play.google.com/store/apps/details?id=com.andyh.wat2eat)
 <br/>
 <br/>
