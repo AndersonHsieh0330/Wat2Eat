@@ -1,13 +1,13 @@
 # Wat2Eat
-You ever get really hungry but have no idea what food is available in your area? Or just tired of having the same stuff everyday? Wat2Eat is here to let you know what food is available around you! Check out on [Google Play](https://play.google.com/store/apps/details?id=com.andyh.wat2eat)
+You ever gotten really hungry but have no idea what food is available in your area? Or just tired of having the same stuff every day? Wat2Eat is here to let you know what food is available around you! Check out on [Google Play](https://play.google.com/store/apps/details?id=com.andyh.wat2eat)
+<br/>
+<br/>
+I often found myself scrolling on Google map and checking each little food tag to find an open restaurant to get food from. So I thought why not make an app that shows all opening restaurants and save some time? The focus of this app is around sending an API request and dealing with JSON data response. Each time user starts the app, all the opening restaurants within 500m are fetched, and each time the user presses the search button, one GET request for the details of the restaurant is sent.
 
-I often found myself scrolling on Google map and checking each little food tags to find an open restaurant to get food from. So I thought why not make an app that shows all opening restaurant and save some time?
-
-The focus of this app is around sending an API request and dealing with JSON data response. 
 
 ## Wat2Eat supports:
 - Getting user's current location
-- Fetching data and filtering for restaurnats that are open within 500m radius of a user
+- Fetching and filtering restaurant data for restaurants that are open within 500m radius of the user's location
 
 ## Some new things I’ve learned:
 - Transitioning from Java to Kotlin 
