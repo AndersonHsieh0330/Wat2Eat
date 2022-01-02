@@ -22,7 +22,7 @@ I often found myself scrolling on Google map and checking each little food tag t
 - Presenting image links: Glide
 - How to attribute resources used in a app and software licenses
 - How to publish an app to Google Play Store
-- Activity BackStak
+- Activity BackStack
 
 ## Libraries and resources I used 
 - Volley
